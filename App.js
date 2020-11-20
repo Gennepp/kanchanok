@@ -9,11 +9,12 @@ import WordNavigator from './navigation/WordNavigator';
 
 export default function App() {
   return  (
-    <View style={styles.screen}>
-      {/* <Header title="Dictionary" /> */}
-      <LoginPfScreen />
-      {/* <SignUpScreen /> */}
-    </View>
+    <WordNavigator />
+    // <View style={styles.screen}>
+    //   {/* <Header title="Dictionary" /> */}
+    //   <LoginPfScreen />
+    //   {/* <SignUpScreen /> */}
+    // </View>
   );
 }
 

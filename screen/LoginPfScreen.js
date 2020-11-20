@@ -16,7 +16,7 @@ import Buttons from '../components/Button';
 import bgImage from '../assets/Login.png';
 
 const LoginPfScreen = (props) => {
-    console.log(props);
+    // console.log(props);
     return (
         <ImageBackground source={bgImage} style={styles.screen}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
@@ -55,7 +55,7 @@ const LoginPfScreen = (props) => {
 
                     <View style={styles.bottomButton}>
                         <Button title='Sign Up' onPress={() => { 
-                            props.navigation.navigate({routeName: 'SignUpScreen'});
+                            props.navigation.navigate('SignUp');
                          }} color={Colors.primary} />
                         <Button title='Forget password?' onPress={() => { }} color={Colors.primary} />
                     </View>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 34,
-        marginTop: '116%',
+        marginTop: '80%',
         //marginVertical: 20,
         fontWeight: 'bold',
         color: Colors.primary,
