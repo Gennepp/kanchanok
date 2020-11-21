@@ -1,7 +1,7 @@
 import React from "react";
 import { TextInput, StyleSheet } from "react-native";
 
-const Blockteach = (props) => {
+const Input = (props) => {
     return <TextInput {...props} style={{ ...styles.input, ...props.style }} />;
 };
 
@@ -10,8 +10,7 @@ const styles = StyleSheet.create({
         // borderBottomColor: 'grey',
         // borderBottomWidth: 1,
         // marginVertical: 10,
-        height : 20,
-        width: 250,
+        fontFamily:'baloo-bhaina',
         fontSize: 16,
         color: 'black',
         shadowColor: "black",
@@ -22,8 +21,8 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         padding: 20,
         borderRadius: 10,
-        fontFamily:'baloo-bhaina'
+        height: 138
     }
 });
 
-export default Blockteach;
+export default Input;

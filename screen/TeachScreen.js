@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import Input from '../components/Input';
-import Blockteach from '../components/Input';
+import Input2 from '../components/Input2';
 import Buttons from '../components/Button';
 import Colors from '../constants/color';
 import bgImage from '../assets/Teachbg.png';
@@ -33,9 +33,9 @@ const TeachScreen = (props) => {
                         // underlineColorAndroid='transparent'
                         />
                     </View>
-                    <View style={styles.inputContainer}>
-                        <Input
-                            style={styles.input }
+                    <View style={styles.meaning}>
+                        <Input2
+                            style={styles.input2}
                             placeholder={'Meaning...'}
                             placeholderTextColor={Colors.primary}
                             autoCorrect={false}
@@ -85,21 +85,29 @@ const styles = StyleSheet.create({
     // },
     input: {
         
-        width: 250,
+        width: 232,
         maxWidth: '80%',
-        height: 45,
+        height: 138,
         marginLeft: 50 ,
-        marginTop: 100,
-        paddingLeft: 45,
+        marginTop: 380,
+        paddingLeft: 20,
         fontSize: 16,
-        color: 'black',
+        color: '(rgba(63, 31, 114, 1)',
         fontFamily:'baloo-bhaina',
         // opacity: 0.7
     },
 
-    inputContainer: {
-        width: 350,
-        marginTop:100
+    meaning: {
+        
+        width: 315.5,
+        maxWidth: '80%',
+        height: 138,
+        marginLeft: -50 ,
+        marginTop: 200,
+        paddingLeft: 45,
+        fontSize: 16,
+        color: '(rgba(63, 31, 114, 1)',
+        fontFamily:'baloo-bhaina',
         
     },
     // buttonContainer: {
