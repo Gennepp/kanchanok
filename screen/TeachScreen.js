@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         marginTop: 200,
         paddingLeft: 45,
         fontSize: 16,
-        color: '(rgba(63, 31, 114, 1)',
+        color: '(rgba(63, 31, 114, 0.8)',
         fontFamily:'baloo-bhaina',
         
     },
