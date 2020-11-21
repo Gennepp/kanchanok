@@ -7,12 +7,14 @@ import {
     TouchableOpacity,
     Keyboard
 } from 'react-native';
+import { MaterialIcons} from '@expo/vector-icons'
 
 import Input from '../components/Input';
 import Input2 from '../components/Input2';
 import Buttons from '../components/Button';
 import Colors from '../constants/color';
 import bgImage from '../assets/Teachbg.png';
+
 const TeachScreen = (props) => {
     // console.log(props);
     return (
@@ -21,8 +23,10 @@ const TeachScreen = (props) => {
                 <View style={styles.screen}>
                     {/* <Text style={styles.title}>You TEACH</Text>
                     <Text style={styles.subTitle}>I LEARN</Text> */}
-
+                    
+                
                     <View>
+                    
                         <Input
                             style={styles.input}
                             placeholder={'Type something...'}
@@ -44,13 +48,16 @@ const TeachScreen = (props) => {
                             
                         // underlineColorAndroid='transparent'
                         />
+                        
                     </View>
 
+                         <MaterialIcons name="navigate-before" size={60} color='white' marginTop style={{marginTop:-665 , marginLeft: -350}}/>
+                    
                     <Buttons style={styles.btnTeach}>
                         <Text style={styles.Text}>Teach me</Text>
                     </Buttons>
-
-
+                    
+                   
                 </View>
             </TouchableWithoutFeedback >
         </ImageBackground >
@@ -70,26 +77,14 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
-    // title: {
-    //     fontSize: 40,
-    //     marginTop: '100%',
-    //     //marginVertical: 20,
-    //     color: '#F5FCFF',
-    //     fontFamily:'baloo-bhaina-bold'
-    // },
-    // subTitle: {
-    //     fontSize: 40,
-    //     color: '#F5FCFF',
-    //     marginVertical: -8,
-    //     fontFamily:'baloo-bhaina-bold'
-    // },
+   
     input: {
         
-        width: 232,
+        width: 242,
         maxWidth: '80%',
         height: 138,
-        marginLeft: 50 ,
-        marginTop: 380,
+        marginLeft: 80 ,
+        marginTop: 390,
         paddingLeft: 20,
         fontSize: 16,
         color: '(rgba(63, 31, 114, 1)',
@@ -99,11 +94,11 @@ const styles = StyleSheet.create({
 
     meaning: {
         
-        width: 315.5,
-        maxWidth: '80%',
+        width: 370,
+        maxWidth: '100%',
         height: 138,
-        marginLeft: -50 ,
-        marginTop: 200,
+        marginLeft: -45 ,
+        marginTop: 40,
         paddingLeft: 45,
         fontSize: 16,
         color: '(rgba(63, 31, 114, 0.8)',
@@ -118,13 +113,14 @@ const styles = StyleSheet.create({
     //     paddingHorizontal: 15,
     // },
     btnTeach: {
-        width: 105,
+        width: 135,
         height: 45,
-        fontFamily:'baloo-bhaina'
+        fontFamily:'baloo-bhaina',
+        marginTop: 640
     },
     Text: {
         color: Colors.primary,
-        fontSize: 16,
+        fontSize: 20,
         textAlign: 'center',
         fontFamily:'baloo-bhaina'
     },
