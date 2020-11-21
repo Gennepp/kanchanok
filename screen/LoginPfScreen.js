@@ -8,8 +8,6 @@ import {
     Keyboard
 } from 'react-native';
 
-import{ FontAwesome } from '@expo/vector-icons';
-
 import Block from '../components/Block';
 import Colors from '../constants/color';
 import Input from '../components/Input';
@@ -109,9 +107,6 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         marginTop: -10
-    },
-    FontAwesome:{
-        
     },
     // buttonContainer: {
     //     // flexDirection: 'row',

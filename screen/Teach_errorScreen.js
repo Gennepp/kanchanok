@@ -30,7 +30,7 @@ const Teach_errorScreen = (props) => {
 };
 const styles = StyleSheet.create({
     backgroundContainer: {
-        backgroundColor: '#FFF',
+        backgroundColor: '#FFFF',
     },
     screen: {
         flex: 1,
