@@ -8,6 +8,8 @@ import Header from './components/Header';
 import LoginPfScreen from './screen/LoginPfScreen';
 import TeachScreen from './screen/TeachScreen';
 import SignUpScreen from './screen/SignUpScreen';
+import ForgotpassScreen from './screen/ForgotpassScreen';
+
 
 import WordNavigator from './navigation/WordNavigator';
 
@@ -39,7 +41,8 @@ export default function App() {
       {/* <Header title="Dictionary" /> */}
       {/* <LoginPfScreen /> */}
       {/* <SignUpScreen /> */}
-      <TeachScreen />
+      {/* <TeachScreen /> */}
+      <ForgotpassScreen/>
     </View>
     );
 }
