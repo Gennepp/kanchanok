@@ -20,7 +20,7 @@ import Buttons from '../components/Button';
 
 import bgImage from '../assets/About_us.png';
 
-const About_usScreen = (props) => {
+const Meaning = (props) => {
     // console.log(props);
     return (
         <ImageBackground source={bgImage} style={styles.screen}>
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default About_usScreen;
+export default Meaning;
