@@ -19,14 +19,25 @@ const TeachScreen = (props) => {
     // console.log(props);
     return (
         <ImageBackground source={bgImage} style={styles.screen}>
+            
            
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}> 
+
+            <KeyboardAvoidingView
+                    behavior='position'
+                    contentContainerStyle={styles.screen}
+                    keyboardVerticalOffset={20}
+                    style={styles.screen}
+                >
           
                 <View style={styles.screen}>
                     {/* <Text style={styles.title}>You TEACH</Text>
                     <Text style={styles.subTitle}>I LEARN</Text> */}
-                     
-                
+                    
+                    <KeyboardAvoidingView        
+                            style={styles.container}
+                             behavior="padding" 
+                     >
                     <View>
                     
                         <Input
@@ -38,8 +49,13 @@ const TeachScreen = (props) => {
                             maxLength={100}
                         // underlineColorAndroid='transparent'
                         />
+                        
                     </View>
+
+                   
+                     
                     <View style={styles.meaning}>
+                    
                         <Input2
                             style={styles.input2}
                             placeholder={'Meaning...'}
@@ -50,8 +66,9 @@ const TeachScreen = (props) => {
                             
                         // underlineColorAndroid='transparent'
                         />
-                        
+                       
                     </View>
+                    
 
                          <MaterialIcons name="navigate-before" size={60} color='white' marginTop style={{marginTop:-665 , marginLeft: -350}}/>
                     
@@ -59,9 +76,11 @@ const TeachScreen = (props) => {
                         <Text style={styles.Text}>Teach me</Text>
                     </Buttons>
                     
-                   
+                    </KeyboardAvoidingView>
+                    
                 </View>
-               
+                </KeyboardAvoidingView>
+                
             </TouchableWithoutFeedback >
            
         </ImageBackground >
@@ -120,7 +139,8 @@ const styles = StyleSheet.create({
         width: 135,
         height: 45,
         fontFamily:'baloo-bhaina',
-        marginTop: 640
+        marginTop: 640,
+        marginLeft: 96
     },
     Text: {
         color: Colors.primary,
@@ -128,6 +148,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily:'baloo-bhaina'
     },
+    
    
 });
 
