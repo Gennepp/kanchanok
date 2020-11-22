@@ -9,6 +9,7 @@ import LoginPfScreen from './screen/LoginPfScreen';
 import TeachScreen from './screen/TeachScreen';
 import SignUpScreen from './screen/SignUpScreen';
 import ForgotpassScreen from './screen/ForgotpassScreen';
+import FavScreen from './screen/FavScreen';
 
 
 import WordNavigator from './navigation/WordNavigator';
@@ -42,7 +43,8 @@ export default function App() {
       {/* <LoginPfScreen /> */}
       {/* <SignUpScreen /> */}
       {/* <TeachScreen /> */}
-      <ForgotpassScreen/>
+      {/* <ForgotpassScreen/> */}
+      <FavScreen />
     </View>
     );
 }
