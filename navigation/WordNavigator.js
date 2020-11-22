@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createAppContainer } from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
 import SignUpScreen from '../screen/SignUpScreen';
 import TestScreen from '../screen/TestScreen';
@@ -12,6 +12,7 @@ import SearchScreen from '../screen/SearchScreen';
 import FavoriteScreen from '../screen/FavoriteScreen';
 import HistoryScreen from '../screen/HistoryScreen';
 import ProfileScreen from '../screen/ProfileScreen';
+import WordScreen from '../screen/WordScreen';
 
 import Colors from '../constants/color';
 
@@ -58,5 +59,18 @@ const WordTabNavigator = createBottomTabNavigator({
     }
 });
 
+createStackNavigator({
+    Favorite: FavoriteScreen,
+    Word: WordScreen,
+});
 
-export default createAppContainer(WordTabNavigator);
+const AuthNavigator = createStackNavigator({
+    Auth: LoginPfScreen,
+});
+
+const MainNavigator = createSwitchNavigator({
+    Auth: AuthNavigator,
+    Search: WordNavigator,
+});
+
+export default createAppContainer(WordNavigator);
