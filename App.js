@@ -8,6 +8,7 @@ import Header from './components/Header';
 import LoginPfScreen from './screen/LoginPfScreen';
 import Teach_errorScreen from './screen/Teach_errorScreen';
 import About_usScreen from './screen/About_usScreen';
+import ProfileScreen from './screen/ProfileScreen';
 
 import WordNavigator from './navigation/WordNavigator';
 
@@ -39,7 +40,8 @@ export default function App() {
       {/* <LoginPfScreen /> */}
       {/* <SignUpScreen /> */}
       {/* <Teach_errorScreen /> */}
-      <About_usScreen />
+      {/* <About_usScreen /> */}
+      <ProfileScreen/>
     </View>
   );
 }
