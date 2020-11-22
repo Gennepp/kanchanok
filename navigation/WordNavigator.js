@@ -8,6 +8,7 @@ import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import SignUpScreen from '../screen/SignUpScreen';
 import TestScreen from '../screen/TestScreen';
 import LoginPfScreen from '../screen/LoginPfScreen';
+import ForgetScreen from '../screen/ForgetScreen';
 import SearchScreen from '../screen/SearchScreen';
 import FavoriteScreen from '../screen/FavoriteScreen';
 import HistoryScreen from '../screen/HistoryScreen';
@@ -28,6 +29,7 @@ const WordNavigator = createStackNavigator({
     Profile: ProfileScreen,
     Login: LoginPfScreen,
     SignUp: SignUpScreen,
+    Forget: ForgetScreen,
     Test: TestScreen,
 });
 
@@ -73,4 +75,4 @@ const MainNavigator = createSwitchNavigator({
     Search: WordNavigator,
 });
 
-export default createAppContainer(WordNavigator);
+export default createAppContainer(WordTabNavigator);

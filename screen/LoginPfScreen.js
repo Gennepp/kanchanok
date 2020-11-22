@@ -50,38 +50,38 @@ const formReducer = (state, action) => {
 const LoginPfScreen = (props) => {
     // const dispatch = useDispatch();
 
-    const [formState, dispatchFormState] = useReducer(formReducer, {
-        inputValues: {
-            email: '',
-            password: ''
-        },
-        inputValidities: {
-            email: false,
-            password: false
-        },
-        formIsValid: false
-    });
+    // const [formState, dispatchFormState] = useReducer(formReducer, {
+    //     inputValues: {
+    //         email: '',
+    //         password: ''
+    //     },
+    //     inputValidities: {
+    //         email: false,
+    //         password: false
+    //     },
+    //     formIsValid: false
+    // });
 
-    const signupHandler = () => {
-        dispatch(
-            authActions.signup(
-                formState.inputValues.email,
-                formState.inputValues.password
-            )
-        );
-    };
+    // const signupHandler = () => {
+    //     dispatch(
+    //         authActions.signup(
+    //             formState.inputValues.email,
+    //             formState.inputValues.password
+    //         )
+    //     );
+    // };
 
-    const inputChangeHandler = useCallback(
-        (inputIdentifier, inputValue, inputValidity) => {
-            dispatchFormState({
-                type: FORM_INPUT_UPDATE,
-                value: inputValue,
-                isValid: inputValidity,
-                input: inputIdentifier
-            });
-        },
-        [dispatchFormState]
-    );
+    // const inputChangeHandler = useCallback(
+    //     (inputIdentifier, inputValue, inputValidity) => {
+    //         dispatchFormState({
+    //             type: FORM_INPUT_UPDATE,
+    //             value: inputValue,
+    //             isValid: inputValidity,
+    //             input: inputIdentifier
+    //         });
+    //     },
+    //     [dispatchFormState]
+    // );
 
     return (
         <ImageBackground source={bgImage} style={styles.backgroundContainer}>
@@ -92,11 +92,11 @@ const LoginPfScreen = (props) => {
                     keyboardVerticalOffset={20}
                     style={styles.screen}
                 >
-                    <TouchableOpacity style={styles.closeIcon}><FontAwesome name="close" size={30} color="white"/></TouchableOpacity>
-                    
+                    <TouchableOpacity style={styles.closeIcon}><FontAwesome name="close" size={30} color="white" /></TouchableOpacity>
+
                     <Text style={styles.title}>EXPLORE NEW WORDS</Text>
                     <Text style={styles.subTitle}>Teach and Learn everyday</Text>
-                    
+
                     <View style={styles.formContainer}>
                         <View>
                             <Feather name="user" size={35} color="black" style={styles.icon} />
@@ -114,7 +114,7 @@ const LoginPfScreen = (props) => {
                                 autoCapitalize='none'
                                 maxLength={15}
                                 returnKeyType='next'
-                                onInputChange={inputChangeHandler}
+                                //onInputChange={inputChangeHandler}
                                 initialValue=""
                             />
                             <Input
@@ -130,7 +130,7 @@ const LoginPfScreen = (props) => {
                                 minLength={5}
                                 maxLength={15}
                                 returnKeyType='next'
-                                onInputChange={inputChangeHandler}
+                                //onInputChange={inputChangeHandler}
                                 initialValue=""
                             />
                         </View>
@@ -140,7 +140,10 @@ const LoginPfScreen = (props) => {
                         <Text style={styles.login}>LOGIN</Text>
                     </Buttons>
 
-                    <TouchableOpacity style={styles.buttonForget} onPress={() => { }}>
+                    <TouchableOpacity
+                        style={styles.buttonForget}
+                        onPress={() => { props.navigation.navigate('Forget'); }}
+                    >
                         <Text style={styles.forgot}>Forget Password?</Text>
                     </TouchableOpacity>
 
@@ -174,12 +177,12 @@ LoginPfScreen.navigationOptions = {
 const styles = StyleSheet.create({
     backgroundContainer: {
         flex: 1,
-        // height: null,
-        // width: null,
+        //height: null,
+        //width: null,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',
-        position: 'relative',
+        position: 'absolute',
         left: 0,
         top: 0,
         width: Dimensions.get('window').width,
@@ -196,7 +199,6 @@ const styles = StyleSheet.create({
         //paddingLeft: 30,
         paddingRight: 20,
         alignSelf: 'flex-end',
-        //backgroundColor: 'black',
     },
     title: {
         fontSize: 34,
@@ -241,7 +243,7 @@ const styles = StyleSheet.create({
         width: 30,
         marginTop: 47,
         color: Colors.primary
-    }, 
+    },
     buttonLogin: {
         width: 105,
         height: 45,
@@ -268,6 +270,7 @@ const styles = StyleSheet.create({
         color: Colors.primary,
         fontSize: 16,
         fontFamily: 'baloo-bhaina',
+        textDecorationLine: 'underline'
     },
     signup: {
         color: Colors.primary,
