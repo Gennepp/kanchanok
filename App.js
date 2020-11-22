@@ -7,6 +7,7 @@ import { AppLoading } from 'expo';
 import Header from './components/Header';
 import LoginPfScreen from './screen/LoginPfScreen';
 import TeachScreen from './screen/TeachScreen';
+import SignUpScreen from './screen/SignUpScreen';
 
 import WordNavigator from './navigation/WordNavigator';
 

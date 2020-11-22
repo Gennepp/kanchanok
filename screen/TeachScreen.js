@@ -5,7 +5,7 @@ import {
     StyleSheet, Button,
     TouchableWithoutFeedback,
     TouchableOpacity,
-    Keyboard
+    Keyboard, KeyboardAvoidingView
 } from 'react-native';
 import { MaterialIcons} from '@expo/vector-icons'
 
@@ -19,11 +19,13 @@ const TeachScreen = (props) => {
     // console.log(props);
     return (
         <ImageBackground source={bgImage} style={styles.screen}>
+           
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}> 
+          
                 <View style={styles.screen}>
                     {/* <Text style={styles.title}>You TEACH</Text>
                     <Text style={styles.subTitle}>I LEARN</Text> */}
-                    
+                     
                 
                     <View>
                     
@@ -59,7 +61,9 @@ const TeachScreen = (props) => {
                     
                    
                 </View>
+               
             </TouchableWithoutFeedback >
+           
         </ImageBackground >
     );
 };
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
         paddingLeft: 45,
         fontSize: 16,
-        color: '(rgba(63, 31, 114, 0.8)',
+        color: '(rgba(63, 31, 114, 1)',
         fontFamily:'baloo-bhaina',
         
     },
