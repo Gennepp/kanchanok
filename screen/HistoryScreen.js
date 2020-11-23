@@ -40,7 +40,7 @@ const HistoryScreen = (props) => {
 
           <Text style={styles.HisText}> History </Text>
 
-          
+        
 
                     <Ionicons 
                     name="ios-trash" 
