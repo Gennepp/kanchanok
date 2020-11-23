@@ -1,15 +1,15 @@
 import React from 'react';
 import {
     ImageBackground, Image, onPress,
-    View, Text,
-    StyleSheet, Button,
+    View, Text,icon,
+    StyleSheet, Button,TouchableOpacity,
     TouchableWithoutFeedback,
     block, Keyboard, event
 } from 'react-native';
 
 
 import {
-    FontAwesome5, Foundation,
+    FontAwesome, Foundation,
     MaterialIcons
 } from '@expo/vector-icons';
 
@@ -35,23 +35,45 @@ const ProfileScreen = (props) => {
                     <Text style={styles.Text1}>Nongnoii</Text>
                 </Block>
             </View>
-
+            <View>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
                 <Buttons style={styles.buttonAs}>
-                    <Text style={styles.Text2}>Accout setting</Text>
+                    <Text style={styles.Text2}>Account setting</Text>
                 </Buttons>
-            </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback >
+            </View>
+
             <Block style={styles.block1}>
-                <View style={styles.bottomButton}>
-                    <Button title='Teach Me' onPress={() => {
-                            props.navigation.navigate('TeachScreen');
-                        }} color={Colors.primary} />
-                    <Button title='About Us' onPress={() => {
-                        props.navigation.navigate('About_usScreen');
-                    }} color={Colors.primary} />
-                    <Text style={styles.Text1}><MaterialIcons name="error" size={30} color='#4F78E3' /> Version 1.0.0</Text>
-                </View>
-            </Block>
+            <View style={styles.icon}>
+                <Foundation name="lightbulb" size={40} color='#FFE600'/>
+                <Text>   </Text>
+                <FontAwesome name="users" size={40} color='#56BC6D' />
+                <Text>   </Text>
+                <MaterialIcons name="error" size={40} color='#4F78E3' />
+            </View>
+            <View>
+                <TouchableOpacity style={styles.bottomButton} onPress={() => {
+                        props.navigation.navigate('TeachScreen');
+                    }}>
+                    <Text style={styles.Text1}>Teach Me</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.bottomButton} onPress={() => {
+                    props.navigation.navigate('About_usScreen');
+                }}>
+                    <Text style={styles.Text1}>About Us</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.bottomButton} onPress={() => {}}>
+                    <Text style={styles.Text1}>Version 1.0.0</Text>
+                </TouchableOpacity>
+            </View>
+            </Block> 
+            <View>
+            <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
+                <Buttons style={styles.buttonlogout}>
+                    <Text style={styles.Text3}>Log out</Text>
+                </Buttons>
+            </TouchableWithoutFeedback >
+            </View>  
         </ImageBackground >
     );
 };
@@ -76,10 +98,11 @@ const styles = StyleSheet.create({
         width: 300,
         height: 200,
         marginTop: 20,
+        flexDirection: 'row',
     },
     Text1: {
         color: '(rgba(63, 31, 114, 1)',
-        fontSize: 15,
+        fontSize: 23,
         fontFamily: 'baloo-bhaina-bold',
     },
     Text2: {
@@ -88,15 +111,32 @@ const styles = StyleSheet.create({
         fontFamily: 'baloo-bhaina',
         alignSelf: 'center',
     },
+    Text3: {
+        color: "white",
+        fontSize: 20,
+        fontFamily: 'baloo-bhaina-bold',
+        alignSelf: 'center',
+    },
     buttonAs: {
         width: 180,
-        height: 40,
+        height: 50,
+        alignItems: 'center',
+    },
+    buttonlogout: {
+        backgroundColor:'#793C73',
+        width: 150,
+        height: 50,
         alignItems: 'center',
     },
     bottomButton: {
+        marginTop:1,
         marginVertical: 10,
-        marginRight: 120,
-    }
+        marginLeft:10,
+    },
+    icon: {
+        marginTop:5,
+        marginVertical: 25,
+    },
 });
 
 export default ProfileScreen;

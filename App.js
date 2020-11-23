@@ -10,6 +10,8 @@ import Teach_errorScreen from './screen/Teach_errorScreen';
 import About_usScreen from './screen/About_usScreen';
 import ProfileScreen from './screen/ProfileScreen';
 import Meaning from './screen/Meaning';
+import AcsetScreen from './screen/AcsetScreen';
+import SearchScreen from './screen/SearchScreen';
 
 import WordNavigator from './navigation/WordNavigator';
 
@@ -43,7 +45,9 @@ export default function App() {
       {/* <Teach_errorScreen /> */}
       {/* <About_usScreen /> */}
       {/* <ProfileScreen/> */}
-      <Meaning/>
+      {/* <Meaning/> */}
+      {/* <AcsetScreen/> */}
+      < SearchScreen/>
     </View>
   );
 }
