@@ -92,8 +92,7 @@ const LoginPfScreen = (props) => {
                     keyboardVerticalOffset={20}
                     style={styles.screen}
                 >
-                    <TouchableOpacity style={styles.closeIcon}><FontAwesome name="close" size={30} color="white" /></TouchableOpacity>
-
+                    <Block style={styles.container}>
                     <Text style={styles.title}>EXPLORE NEW WORDS</Text>
                     <Text style={styles.subTitle}>Teach and Learn everyday</Text>
 
@@ -142,9 +141,9 @@ const LoginPfScreen = (props) => {
 
                     <TouchableOpacity
                         style={styles.buttonForget}
-                        onPress={() => { props.navigation.navigate('Forget'); }}
+                        onPress={() => { props.navigation.navigate('Forgot'); }}
                     >
-                        <Text style={styles.forgot}>Forget Password?</Text>
+                        <Text style={styles.forgot}>Forgot Password?</Text>
                     </TouchableOpacity>
 
                     <View style={styles.bottom}>
@@ -156,6 +155,7 @@ const LoginPfScreen = (props) => {
                             <Text style={styles.signup}>Signup</Text>
                         </TouchableOpacity>
                     </View>
+                    </Block>
 
                     {/* <View style={styles.bottomButton}>
                         <Button title='Sign Up' onPress={() => {
@@ -171,7 +171,16 @@ const LoginPfScreen = (props) => {
 };
 
 LoginPfScreen.navigationOptions = {
-    headerShown: false,
+    headerTransparent: true,
+    title: null,
+    headerRight: () => (
+        <TouchableOpacity
+            style={{ marginRight: 20, marginTop: -15, backgroundColor: '' }}
+            onPress={() => alert('This is a button!')}
+        >
+            <FontAwesome name="close" size={30} color="white" />
+        </TouchableOpacity>
+    ),
 };
 
 const styles = StyleSheet.create({
@@ -194,16 +203,18 @@ const styles = StyleSheet.create({
         width: '100%',
         maxWidth: '100%',
     },
-    closeIcon: {
-        marginTop: '15%',
-        //paddingLeft: 30,
-        paddingRight: 20,
-        alignSelf: 'flex-end',
+    container: {
+        width: 380,
+        height: 425,
+        marginTop: '111%',
+        alignItems: 'center',
+        borderRadius: 25,
+        backgroundColor: 'rgba(255, 255, 255, 0.8)'
     },
     title: {
         fontSize: 34,
         fontFamily: 'baloo-bhaina-bold',
-        marginTop: '88%',
+        marginTop: -17,
         //marginVertical: 20,
         //fontWeight: 'bold',
         color: Colors.primary,
