@@ -10,6 +10,7 @@ import TeachScreen from './screen/TeachScreen';
 import SignUpScreen from './screen/SignUpScreen';
 import ForgotpassScreen from './screen/ForgotpassScreen';
 import FavScreen from './screen/FavScreen';
+import HistoryScreen from './screen/HistoryScreen';
 
 
 import WordNavigator from './navigation/WordNavigator';
@@ -41,10 +42,11 @@ export default function App() {
     <View style={styles.screen}>
       {/* <Header title="Dictionary" /> */}
       {/* <LoginPfScreen /> */}
-      {/* <SignUpScreen /> */}
+      <SignUpScreen />
       {/* <TeachScreen /> */}
       {/* <ForgotpassScreen/> */}
-      <FavScreen />
+      {/* <FavScreen /> */}
+      {/* <HistoryScreen /> */}
     </View>
     );
 }

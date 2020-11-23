@@ -110,9 +110,24 @@ const SignUpScreen = (props) => {
              style={{ marginTop: -555, marginLeft: -18 }}
             />
 
-            <Buttons style={styles.btnmail}>
+            <Buttons style={styles.btncreate}>
               <Text style={styles.Text}>CREATE ACCOUNT</Text>
             </Buttons>
+                    
+            <Text style={styles.PrelogText}>Already have an account?</Text>
+            
+
+            <View style={styles.bottom}>
+
+           
+            <TouchableOpacity style={styles.btnLogin} onPress={() => {
+                    props.navigation.navigate('LoginPfScreen');
+                }}>
+                            <Text style={styles.LoginText}>LOGIN</Text>
+                        </TouchableOpacity>
+            </View>
+
+
           </Block>
         </View>
         </KeyboardAvoidingView>
@@ -183,7 +198,7 @@ const styles = StyleSheet.create({
     fontFamily: "baloo-bhaina",
   },
 
-  btnmail: {
+  btncreate: {
     width: 200,
     height: 45,
     
@@ -211,6 +226,30 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: 'rgba(256,256,256,0.75)'
   },
+  btnLogin: {
+    marginTop: -40,
+    marginLeft: 250,
+  },
+  LoginText: {
+    fontSize: 20,
+    color: "#3F1F72",
+    fontFamily: "baloo-bhaina-bold",
+    // marginTop: -68,
+    // marginLeft: 280,
+    textDecorationLine: 'underline',
+  },
+  PrelogText: {
+    fontSize: 16,
+    color: "#3F1F72",
+    fontFamily: "baloo-bhaina",
+    marginTop : 30,
+    marginLeft: 55
+  },
+  bottom: {
+    marginTop: -5,
+    flexDirection: 'row',
+   
+},
 });
 
 export default SignUpScreen;
