@@ -42,11 +42,11 @@ export default function App() {
     <View style={styles.screen}>
       {/* <Header title="Dictionary" /> */}
       {/* <LoginPfScreen /> */}
-      <SignUpScreen />
+      {/* <SignUpScreen /> */}
       {/* <TeachScreen /> */}
       {/* <ForgotpassScreen/> */}
       {/* <FavScreen /> */}
-      {/* <HistoryScreen /> */}
+      <HistoryScreen />
     </View>
     );
 }
