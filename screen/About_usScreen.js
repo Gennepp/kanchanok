@@ -2,7 +2,7 @@ import React from 'react';
 import {
     ImageBackground,
     View, Text, TextInput,
-    StyleSheet, Button,
+    StyleSheet, Button,Title,
     TouchableWithoutFeedback,
     TouchableOpacity,block,
     Keyboard
@@ -24,16 +24,22 @@ const Meaning = (props) => {
     // console.log(props);
     return (
         <ImageBackground source={bgImage} style={styles.screen}>
-            
+            <View style={styles.top}>
                 <View>
-                <MaterialIcons name ='navigate-before' size={60} color="white" style={{marginTop:40,marginLeft:-36 }}/>
+                     <TouchableOpacity style={styles.icon} onPress={() => {}}>
+                         <MaterialIcons name ='navigate-before' size={60} color="white" />
+                     </TouchableOpacity>
+                 </View>
+                <View>
+                    <Text style={styles.Text}>About Us</Text>
+                </View>
+            </View>
+                <View>
                     <Block style={styles.blockAbout_us}>
-                        <Text style={styles.Text}></Text>
-                        <Text style={styles.Text}></Text>
-                        <Text style={styles.Text}><Entypo name ='facebook-with-circle' size={30} color= '#4658fc'/>   S1G5</Text>
-                        <Text style={styles.Text}><Entypo name ='mail'size={30} color= '#F7EC90'/>  S1G5@hotmail.com</Text>
-                        <Text style={styles.Text}><FontAwesome name ='home'size={30} color= '#8B5353'/>   KMITL,Lardkrabang</Text>
-                        <Text style={styles.Text}><Ionicons name ='ios-call'size={30}  color= '#7BCDCD'/>   012-3456789</Text>
+                        <Text style={styles.Text2}><Entypo name ='facebook-with-circle' size={30} color= '#4658fc'/>   S1G5</Text>
+                        <Text style={styles.Text2}><Entypo name ='mail'size={30} color= '#F7EC90'/>  S1G5@hotmail.com</Text>
+                        <Text style={styles.Text2}><FontAwesome name ='home'size={30} color= '#8B5353'/>   KMITL,Lardkrabang</Text>
+                        <Text style={styles.Text2}><Ionicons name ='ios-call'size={30}  color= '#7BCDCD'/>   012-3456789</Text>
                     </Block>
                 </View>
         </ImageBackground >
@@ -60,13 +66,29 @@ const styles = StyleSheet.create({
     blockAbout_us: {
         width: 350,
         height: 300,
-        marginTop: 160,
+        marginTop: 50,
+        // alignItems:'center',
+    },
+   top: {
+        flexDirection:'row',
     },
     Text: {
+        color: '#ffff',
+        fontSize: 60,
+        textAlign:'center',
+        fontFamily:'baloo-bhaina-bold',
+        marginTop:85,
+    },
+    Text2: {
         color: 'black',
-        fontSize: 26,
+        fontSize: 27,
         marginLeft:30,
         fontFamily:'baloo-bhaina',
+        marginTop:10,
+    },
+    icon: {
+        marginLeft:-90,
+        marginTop:40,
     },
     
 });
