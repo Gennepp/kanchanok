@@ -18,8 +18,9 @@ import Colors from '../constants/color';
 import Input from '../components/Input';
 import Buttons from '../components/Button';
 
-import bgImage from '../assets/Profile.png';
+import bgImage from '../assets/Profilefinal.png';
 import pfImage from '../assets/1.jpg';
+import { TextInput } from 'react-native-gesture-handler';
 
 const ProfileScreen = (props) => {
     // console.log(props);
@@ -32,7 +33,7 @@ const ProfileScreen = (props) => {
             </View>
             <View>
                 <Block style={styles.blockname}>
-                    <Text style={styles.Text1}>Nongnoii</Text>
+                    <TextInput style={styles.TextInput}>Nongnoii</TextInput>
                 </Block>
             </View>
             <View>
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     },
     blockname: {
         width: 270,
-        height: 50,
+        height: 60,
         marginTop: 20,
         alignItems: 'center',
     },
@@ -100,10 +101,17 @@ const styles = StyleSheet.create({
         marginTop: 20,
         flexDirection: 'row',
     },
+    TextInput: {
+        color: '(rgba(63, 31, 114, 1)',
+        fontSize: 29,
+        fontFamily: 'baloo-bhaina-bold',
+    },
     Text1: {
         color: '(rgba(63, 31, 114, 1)',
-        fontSize: 23,
+        fontSize: 25,
         fontFamily: 'baloo-bhaina-bold',
+        marginTop:-1,
+        marginLeft:5,
     },
     Text2: {
         color: '(rgba(63, 31, 114, 1)',
