@@ -43,10 +43,10 @@ export default function App() {
       {/* <LoginPfScreen /> */}
       {/* <SignUpScreen /> */}
       {/* <Teach_errorScreen /> */}
-      <About_usScreen />
+      {/* <About_usScreen /> */}
       {/* <ProfileScreen/> */}
       {/* <Meaning/> */}
-      {/* <AcsetScreen/> */}
+      <AcsetScreen/>
       {/* < SearchScreen/> */}
     </View>
   );

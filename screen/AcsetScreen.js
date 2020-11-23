@@ -21,6 +21,7 @@ const AcsetScreen = (props) => {
     // console.log(props);
     return (
         <ImageBackground source={bgImage} style={styles.screen}>
+        <View>
             <View style={styles.upper}>
                 <Text style={styles.Text}>Account</Text>
                 <Text style={styles.Text2}>Setting</Text>
@@ -30,20 +31,32 @@ const AcsetScreen = (props) => {
                     source={pfImage}>
                 </Image>
             </View>
-            <TouchableOpacity style={styles.bottomButton} onPress={() => {}}>
+            <View style={styles.l4}>
+            <TouchableOpacity style={styles.bottomButton} onPress={() => { }}>
                     <Text style={styles.Text3}>change Profile Picture</Text>
-                </TouchableOpacity>
-                <View style={styles.l}>
-                    <Text style={styles.Text4}>Name</Text>
-                </View>
-                <View style={styles.l}>
-                    <Text style={styles.Text4}>Password</Text>
-                </View>
-                <View style={styles.l}>
-                    <Text style={styles.Text4}>Email</Text>
-                </View>
-                <View style={styles.inputContainer}>
-                <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
+            </TouchableOpacity>
+            </View>
+        </View>
+        <View style={styles.Container2}>
+                <View style={styles.Container1}>
+                    <View style={styles.l}>
+                        <Text style={styles.Text4}>Name</Text>
+                        <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
+                        <Input
+                                    style={styles.input}
+                                    placeholder={'New User Name'}
+                                    placeholderTextColor={'#552A72'}
+                                    autoCorrect={false}
+                                    autoCapitalize='none'
+                                    maxLength={10}
+                                    flexDirection = 'row'
+                                // underlineColorAndroid='transparent'
+                                />
+                        </TouchableWithoutFeedback>
+                    </View>
+                    <View style={styles.l2}>
+                        <Text style={styles.Text4}>Password</Text>
+                        <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
                 <Input
                             style={styles.input}
                             placeholder={'New User Name'}
@@ -55,31 +68,27 @@ const AcsetScreen = (props) => {
                         // underlineColorAndroid='transparent'
                         />
                 </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
-                <Input
-                            style={styles.input}
-                            placeholder={'New Password'}
-                            placeholderTextColor={'#552A72'}
-                            autoCorrect={false}
-                            autoCapitalize='none'
-                            maxLength={10}
-                            flexDirection = 'row'
-                        // underlineColorAndroid='transparent'
-                        />
-                </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
-                <Input
-                            style={styles.input}
-                            placeholder={'New E-mail'}
-                            placeholderTextColor={'#552A72'}
-                            autoCorrect={false}
-                            autoCapitalize='none'
-                            maxLength={10}
-                            flexDirection = 'row'
-                        // underlineColorAndroid='transparent'
-                        />
-                </TouchableWithoutFeedback>
-                </View>
+                    </View>
+                    <View style={styles.l3}>
+                        <Text style={styles.Text4}>Email</Text>
+                        <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
+                        <Input
+                                    style={styles.input}
+                                    placeholder={'New User Name'}
+                                    placeholderTextColor={'#552A72'}
+                                    autoCorrect={false}
+                                    autoCapitalize='none'
+                                    maxLength={10}
+                                    flexDirection = 'row'
+                                // underlineColorAndroid='transparent'
+                                />
+                        </TouchableWithoutFeedback>
+                    </View>
+        </View>
+        </View>
+        <Buttons style={styles.buttonLogout}>
+                        <Text style={styles.logout}>Log Out</Text>
+        </Buttons>
         </ImageBackground >
     );
 };
@@ -99,17 +108,26 @@ const styles = StyleSheet.create({
     },
     Image: {
         marginTop:-80,
+        marginLeft:80,
     },
     Input: {
         width:120,
         height:50,
     },
     inputContainer: {
-        width:300,
+        width:100,
         height:50,
-        marginLeft: 120,
+        marginLeft: 110,
         marginHorizontal:50,
         flexDirection:'column',
+    },
+    Container1:{
+        marginRight:10,
+        marginTop:10,
+    },
+    Container2:{
+       flexDirection:'column',
+       marginTop:-45,
     },
     Text: {
         color:'#ffff',
@@ -134,23 +152,38 @@ const styles = StyleSheet.create({
     },
     Text4: {
         color:'#401F70',
-        fontSize: 25,
+        fontSize: 20,
         marginTop:25,
         marginRight:250,
+        fontFamily: 'baloo-bhaina-med',
+    },
+    logout:{
+        color:'#ffff',
+        fontSize:25,
+        textAlign:'center',
         fontFamily: 'baloo-bhaina-med',
     },
     block: {
         width: 100,
         height:50,
     },
-    bottomText: {
-        color: Colors.primary,
-        marginVertical: 20
+    l:{
+        marginTop:5,
     },
-    bottomButton: {
-        marginVertical: -20,
+    l2:{
+        marginTop:-20,
     },
-    
+    l3:{
+        marginTop:-20,
+    },
+    l4:{
+        marginTop:-20,
+    },
+    buttonLogout:{
+        width:150,
+        height:50,
+        backgroundColor:'#5E2689',
+    },
 });
 
 export default AcsetScreen;
