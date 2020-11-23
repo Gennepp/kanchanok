@@ -93,68 +93,68 @@ const LoginPfScreen = (props) => {
                     style={styles.screen}
                 >
                     <Block style={styles.container}>
-                    <Text style={styles.title}>EXPLORE NEW WORDS</Text>
-                    <Text style={styles.subTitle}>Teach and Learn everyday</Text>
+                        <Text style={styles.title}>EXPLORE NEW WORDS</Text>
+                        <Text style={styles.subTitle}>Teach and Learn everyday</Text>
 
-                    <View style={styles.formContainer}>
-                        <View>
-                            <Feather name="user" size={35} color="black" style={styles.icon} />
-                            <MaterialIcons name="lock-outline" size={35} color="black" style={styles.icon2} />
+                        <View style={styles.formContainer}>
+                            <View>
+                                <Feather name="user" size={35} color="black" style={styles.icon} />
+                                <MaterialIcons name="lock-outline" size={35} color="black" style={styles.icon2} />
+                            </View>
+                            <View style={styles.inputContainer}>
+                                <Input
+                                    style={styles.input}
+                                    id="username"
+                                    keyboardType="email-address"
+                                    errorText="please enter a valid input!"
+                                    placeholder={'Username'}
+                                    placeholderTextColor={Colors.primary}
+                                    autoCorrect={false}
+                                    autoCapitalize='none'
+                                    maxLength={15}
+                                    returnKeyType='next'
+                                    //onInputChange={inputChangeHandler}
+                                    initialValue=""
+                                />
+                                <Input
+                                    style={styles.input}
+                                    id="password"
+                                    keyboardType="default"
+                                    secureTextEntry
+                                    errorText="please enter a valid password!"
+                                    placeholder={'Password'}
+                                    placeholderTextColor={Colors.primary}
+                                    autoCorrect={false}
+                                    autoCapitalize='none'
+                                    minLength={5}
+                                    maxLength={15}
+                                    returnKeyType='next'
+                                    //onInputChange={inputChangeHandler}
+                                    initialValue=""
+                                />
+                            </View>
                         </View>
-                        <View style={styles.inputContainer}>
-                            <Input
-                                style={styles.input}
-                                id="username"
-                                keyboardType="email-address"
-                                errorText="please enter a valid input!"
-                                placeholder={'Username'}
-                                placeholderTextColor={Colors.primary}
-                                autoCorrect={false}
-                                autoCapitalize='none'
-                                maxLength={15}
-                                returnKeyType='next'
-                                //onInputChange={inputChangeHandler}
-                                initialValue=""
-                            />
-                            <Input
-                                style={styles.input}
-                                id="password"
-                                keyboardType="default"
-                                secureTextEntry
-                                errorText="please enter a valid password!"
-                                placeholder={'Password'}
-                                placeholderTextColor={Colors.primary}
-                                autoCorrect={false}
-                                autoCapitalize='none'
-                                minLength={5}
-                                maxLength={15}
-                                returnKeyType='next'
-                                //onInputChange={inputChangeHandler}
-                                initialValue=""
-                            />
-                        </View>
-                    </View>
 
-                    <Buttons style={styles.buttonLogin} onPress={() => { }}>
-                        <Text style={styles.login}>LOGIN</Text>
-                    </Buttons>
+                        <Buttons style={styles.buttonLogin} onPress={() => { }}>
+                            <Text style={styles.login}>LOGIN</Text>
+                        </Buttons>
 
-                    <TouchableOpacity
-                        style={styles.buttonForget}
-                        onPress={() => { props.navigation.navigate('Forgot'); }}
-                    >
-                        <Text style={styles.forgot}>Forgot Password?</Text>
-                    </TouchableOpacity>
-
-                    <View style={styles.bottom}>
-                        <Text style={styles.text2}>Not a member yet?</Text>
                         <TouchableOpacity
-                            style={styles.buttonSignup}
-                            onPress={() => { props.navigation.navigate('SignUp'); }}
+                            style={styles.buttonForget}
+                            onPress={() => { props.navigation.navigate('Forgot'); }}
                         >
-                            <Text style={styles.signup}>Signup</Text>
+                            <Text style={styles.forgot}>Forgot Password?</Text>
                         </TouchableOpacity>
-                    </View>
+
+                        <View style={styles.bottom}>
+                            <Text style={styles.text2}>Not a member yet?</Text>
+                            <TouchableOpacity
+                                style={styles.buttonSignup}
+                                onPress={() => { props.navigation.navigate('SignUp'); }}
+                            >
+                                <Text style={styles.signup}>Signup</Text>
+                            </TouchableOpacity>
+                        </View>
                     </Block>
 
                     {/* <View style={styles.bottomButton}>
@@ -208,8 +208,12 @@ const styles = StyleSheet.create({
         height: 425,
         marginTop: '111%',
         alignItems: 'center',
-        borderRadius: 25,
-        backgroundColor: 'rgba(255, 255, 255, 0.8)'
+        borderRadius: 20,
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0,
+        shadowRadius: 0,
+        elevation: 0,
     },
     title: {
         fontSize: 34,
