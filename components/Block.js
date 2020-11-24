@@ -8,13 +8,13 @@ const Block = (props) => {
 const styles = StyleSheet.create({
   block: {
     shadowColor: "black",
-    shadowOffset: { width: 0, height: 5 },
+    shadowOffset: { width: 0, height: 2.5 },
     shadowOpacity: 0.34,
-    shadowRadius: 6.27,
+    shadowRadius: 5,
     elevation: 5,
     backgroundColor: "white",
-    padding: 20,
-    borderRadius: 10,
+    //padding: 20,
+    borderRadius: 15,
     // marginVertical: 15,
     // paddingLeft: 45,
     // color: 'rgba(255,255,255,0.7)',
