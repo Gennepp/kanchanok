@@ -43,10 +43,10 @@ export default function App() {
       {/* <Header title="Dictionary" /> */}
       {/* <LoginPfScreen /> */}
       {/* <SignUpScreen /> */}
-      {/* <TeachScreen /> */}
+      <TeachScreen />
       {/* <ForgotpassScreen/> */}
       {/* <FavScreen /> */}
-      <HistoryScreen />
+      {/* <HistoryScreen /> */}
     </View>
     );
 }
