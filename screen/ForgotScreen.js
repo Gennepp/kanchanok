@@ -21,8 +21,9 @@ import {
 import Input from "../components/Input";
 import Buttons from "../components/Button";
 import Colors from "../constants/color";
-import bgImage from "../assets/Forgot_Pass.png";
 import Block from "../components/Block";
+
+import bgImage from "../assets/Forgot.png";
 
 const ForgotScreen = props => {
   return (
@@ -155,8 +156,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: 'rgba(256,256,256,0.75)'
   },
-
-
   inputmail: {
     width: 250,
     maxWidth: "100%",
@@ -168,7 +167,6 @@ const styles = StyleSheet.create({
     color: "black",
     fontFamily: "baloo-bhaina",
   },
-
   btnpass: {
     width: 200,
     height: 45,

@@ -47,7 +47,7 @@ const formReducer = (state, action) => {
     return state;
 };
 
-const LoginPfScreen = (props) => {
+const LoginScreen = (props) => {
     // const dispatch = useDispatch();
 
     // const [formState, dispatchFormState] = useReducer(formReducer, {
@@ -170,7 +170,7 @@ const LoginPfScreen = (props) => {
     );
 };
 
-LoginPfScreen.navigationOptions = {
+LoginScreen.navigationOptions = {
     headerTransparent: true,
     title: null,
     headerRight: () => (
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     container: {
         width: 380,
         height: 425,
-        marginTop: '108%',
+        marginTop: '85%',
         alignItems: 'center',
         borderRadius: 20,
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
@@ -307,4 +307,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LoginPfScreen;
+export default LoginScreen;

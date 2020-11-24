@@ -1,15 +1,17 @@
 import React from 'react';
 import {
+    Dimensions,
     ImageBackground, Image, onPress,
-    View, Text,
+    View, Text, icon,
     StyleSheet, Button,
     TouchableOpacity,
     TouchableWithoutFeedback,
     block, Keyboard, event
 } from 'react-native';
 
+
 import {
-    FontAwesome5, Foundation,
+    FontAwesome, Foundation,
     MaterialIcons
 } from '@expo/vector-icons';
 
@@ -19,101 +21,157 @@ import Input from '../components/Input';
 import Buttons from '../components/Button';
 
 import bgImage from '../assets/Profile.png';
-import pfImage from '../assets/Avatar.png';
+import pfImage from '../assets/Avatar2.jpg';
+import { TextInput } from 'react-native-gesture-handler';
 
 const ProfileScreen = (props) => {
     // console.log(props);
     return (
-        <ImageBackground source={bgImage} style={styles.screen}>
-            <View>
-                <Image style={{ width: 150, height: 150, borderRadius: 75, marginTop: 100, alignSelf: 'center' }}
+        <ImageBackground source={bgImage} style={styles.backgroundContainer}>
+            <View style={styles.screen}>
+
+                <Image style={styles.profilePic}
                     source={pfImage}>
                 </Image>
-            </View>
-            <View>
-                <Block style={styles.blockname}>
-                    <Text style={styles.Text3}>Nongnoii</Text>
-                </Block>
-            </View>
 
-            <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
-                <Buttons style={styles.buttonAs}>
-                    <Text style={styles.Text2}>Accout setting</Text>
+                <Block style={styles.nameBox}>
+                    <Text style={styles.name}>Nongnoii</Text>
+                </Block>
+
+                <Buttons style={styles.acsButton} onPress={() => {
+                    props.navigation.navigate('Acs');
+                }}
+                >
+                    <Text style={styles.buttonTitle}>Account setting</Text>
                 </Buttons>
-            </TouchableWithoutFeedback>
-            <Block style={styles.block1}>
-                <TouchableOpacity style={styles.bottomButton} onPress={() => {
-                        props.navigation.navigate('TeachScreen');
+
+                <Block style={styles.block}>
+                    <TouchableOpacity style={styles.optionContainer} onPress={() => {
+                        props.navigation.navigate('Teach');
                     }}>
-                    <Text style={styles.Text3}>Teach Me</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.bottomButton} onPress={() => {
-                    props.navigation.navigate('About_usScreen');
-                }}>
-                    <Text style={styles.Text3}>About Us</Text>
-                </TouchableOpacity>
-                <Text style={styles.Text1}><MaterialIcons name="error" size={30} color='#4F78E3' /> Version 1.0.0</Text>
-                {/* <TouchableOpacity style={styles.bottomButton}>
-                    <Touch title='Teach Me' onPress={() => {
-                        props.navigation.navigate('TeachScreen');
-                    }} color={Colors.primary} />
-                <Button title='About Us' onPress={() => {
-                    props.navigation.navigate('About_usScreen');
-                }} color={Colors.primary} />
-                <Text style={styles.Text1}><MaterialIcons name="error" size={30} color='#4F78E3' /> Version 1.0.0</Text>
-                </TouchableOpacity> */}
-            </Block>
+                        <Foundation name="lightbulb" size={33} color='#FFD600' />
+                        <Text style={styles.option}>Teach Me</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.optionContainer} onPress={() => {
+                        props.navigation.navigate('AboutUs');
+                    }}>
+                        <FontAwesome name="users" size={26} color='#56BC6D' />
+                        <Text style={styles.option}>About Us</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.optionContainer}>
+                        <MaterialIcons name="error" size={28} color='#4F78E3' />
+                        <Text style={styles.option}>Version 1.0.0</Text>
+                    </TouchableOpacity>
+                </Block>
+                <Buttons style={styles.btnLogout} onPress={() => { Keyboard.dismiss(); }}>
+                    <Text style={styles.logout}>Log out</Text>
+                </Buttons >
+
+                <Buttons style={styles.buttonLogin} onPress={() => { props.navigation.navigate('Login'); }}>
+                    <Text style={styles.login}>LOGIN</Text>
+                </Buttons>
+            </View>
         </ImageBackground >
     );
 };
 
 const styles = StyleSheet.create({
     backgroundContainer: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: 'white',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
     },
     screen: {
         flex: 1,
         alignItems: 'center',
+        width: '100%',
+        maxWidth: '100%',
     },
-    blockname: {
+    profilePic: {
+        width: 150,
+        height: 150,
+        borderRadius: 75,
+        marginTop: 80,
+        alignSelf: 'center'
+    },
+    nameBox: {
         width: 270,
-        height: 30,
-        marginTop: 20,
+        height: 50,
+        marginTop: 30,
         alignItems: 'center',
+        backgroundColor: '(rgba(255, 255, 255, 1)',
     },
-    block1: {
-        width: 300,
-        height: 200,
-        marginTop: 20,
-    },
-    Text1: {
+    name: {
         color: '(rgba(63, 31, 114, 1)',
-        fontSize: 15,
+        fontSize: 29,
         fontFamily: 'baloo-bhaina-bold',
     },
-    Text2: {
-        color: '(rgba(63, 31, 114, 1)',
-        fontSize: 20,
-        fontFamily: 'baloo-bhaina',
-        alignSelf: 'center',
+    acsButton: {
+        width: 190,
+        height: 50,
+        marginTop: 30,
+        alignItems: 'center',
     },
-    Text3: {
-        marginTop:-18,
+    buttonTitle: {
         color: Colors.primary,
         fontSize: 20,
         fontFamily: 'baloo-bhaina-bold',
+        alignSelf: 'center',
     },
-    buttonAs: {
-        width: 180,
-        height: 40,
+    block: {
+        width: 300,
+        height: 200,
+        marginTop: 30,
+        backgroundColor: 'rgba(255,255,255,1)',
+    },
+    optionContainer: {
+        marginVertical: 3.3,
+        paddingLeft: 15,
+        width: 300,
+        height: 60,
+        flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'flex-start',
     },
-    bottomButton: {
-        marginVertical: 10,
-        marginRight: 120,
-    }
+    option: {
+        color: '(rgba(63, 31, 114, 1)',
+        fontSize: 25,
+        fontFamily: 'baloo-bhaina-bold',
+        marginTop: 5,
+        marginLeft: 20,
+    },
+    btnLogout: {
+        marginTop: 40,
+        width: 115,
+        height: 45,
+        backgroundColor: '#683474',
+        justifyContent: 'center',
+    },
+    logout: {
+        color: "white",
+        fontSize: 20,
+        fontFamily: 'baloo-bhaina-bold',
+        textAlign: 'center',
+    },
+    buttonLogin: {
+        width: 105,
+        height: 45,
+        justifyContent: 'center',
+        backgroundColor: Colors.button,
+    },
+    login: {
+        paddingTop: 5,
+        color: 'white',
+        fontSize: 20,
+        fontFamily: 'baloo-bhaina-bold',
+        textAlign: 'center'
+    },
 });
 
 export default ProfileScreen;
