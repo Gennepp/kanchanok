@@ -13,7 +13,11 @@ import SearchScreen from '../screen/SearchScreen';
 import FavoriteScreen from '../screen/FavoriteScreen';
 import HistoryScreen from '../screen/HistoryScreen';
 import ProfileScreen from '../screen/ProfileScreen';
+import AcsScreen from '../screen/AcsScreen';
+import TeachScreen from '../screen/TeachScreen';
+import AboutUsScreen from '../screen/AboutUsScreen';
 import WordScreen from '../screen/WordScreen';
+import LoginScreen from '../screen/LoginScreen';
 
 import Colors from '../constants/color';
 
@@ -23,10 +27,15 @@ import { FontAwesome } from '@expo/vector-icons';
 import { createMaterial } from 'react-navigation-material-bottom-tabs';
 
 const WordNavigator = createStackNavigator({
-    Search: LoginPfScreen,
+    Search: SearchScreen,
+    Word: WordScreen,
     Favorite: FavoriteScreen,
     History: HistoryScreen,
     Profile: ProfileScreen,
+    Welcome: LoginScreen,
+    Acs: AcsScreen,
+    Teach: TeachScreen,
+    AboutUs: AboutUsScreen,
     Login: LoginPfScreen,
     SignUp: SignUpScreen,
     Forgot: ForgotScreen,
@@ -38,6 +47,18 @@ const WordNavigator = createStackNavigator({
     }
 }
 );
+
+WordNavigator.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true;
+  
+    if (navigation.state.index > 0) {
+      tabBarVisible = false;
+    }
+  
+    return {
+      tabBarVisible,
+    };
+};  
 
 const WordTabNavigator = createBottomTabNavigator({
     Search: {
@@ -111,4 +132,4 @@ const MainNavigator = createSwitchNavigator({
     Search: WordNavigator,
 });
 
-export default createAppContainer(WordNavigator);
+export default createAppContainer(WordTabNavigator);
