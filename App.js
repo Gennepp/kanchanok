@@ -12,6 +12,7 @@ import ProfileScreen from './screen/ProfileScreen';
 import Meaning from './screen/Meaning';
 import AcsetScreen from './screen/AcsetScreen';
 import SearchScreen from './screen/SearchScreen';
+import WelcomeScreen from './screen/WelcomeScreen';
 
 import WordNavigator from './navigation/WordNavigator';
 
@@ -46,8 +47,9 @@ export default function App() {
       {/* <About_usScreen /> */}
       {/* <ProfileScreen/> */}
       {/* <Meaning/> */}
-      <AcsetScreen/>
+      {/* <AcsetScreen/> */}
       {/* < SearchScreen/> */}
+      <WelcomeScreen/>
     </View>
   );
 }
