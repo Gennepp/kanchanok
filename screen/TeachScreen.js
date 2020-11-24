@@ -11,10 +11,9 @@ import {
 import { MaterialIcons } from '@expo/vector-icons'
 
 import Input from '../components/Input';
-import Input2 from '../components/Input2';
 import Buttons from '../components/Button';
 import Colors from '../constants/color';
-import bgImage from '../assets/Teachbg.png';
+import bgImage from '../assets/Teach.png';
 
 const TeachScreen = (props) => {
     // console.log(props);
