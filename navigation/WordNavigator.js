@@ -41,7 +41,7 @@ const WordNavigator = createStackNavigator({
     Forgot: ForgotScreen,
     Test: TestScreen,
 }, {
-    navigationOptions: {
+    defaultNavigationOptions: {
         //headerShown: false,  
         //headerTransparent: true
     }

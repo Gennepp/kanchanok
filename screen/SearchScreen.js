@@ -3,27 +3,33 @@ import {
     Dimensions,
     ImageBackground,
     View, Text, TextInput,
+    FlatList,
     StyleSheet, Button,
     TouchableWithoutFeedback,
     TouchableOpacity, icon,
     Keyboard, Contain,
     KeyboardAvoidingView
 } from 'react-native';
+import { useSelector } from 'react-redux';
 
-import {
-    FontAwesome
-} from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 import Block from '../components/Block';
 import Colors from '../constants/color';
 import Input from '../components/Input';
 import Buttons from '../components/Button';
+import WordItem from '../components/store/WordItem';
 
 import bgImage from '../assets/search.png';
 import { ScrollView } from 'react-native-gesture-handler';
 
+
+
 const SearchScreen = (props) => {
+    const words = useSelector(state => state.words.availableWords);
+
     return (
+
         <ImageBackground source={bgImage} style={styles.backgroundContainer}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
                 <View style={styles.screen}>
@@ -48,14 +54,21 @@ const SearchScreen = (props) => {
                         </View>
                     </KeyboardAvoidingView>
                     <Block style={styles.block}>
-                        <ScrollView>
-                            <TouchableOpacity onPress={() => {
-                                props.navigation.navigate('Word');
-                            }}
-                            >
-                                <Text style={styles.Text}>ตุยเย่</Text>
-                            </TouchableOpacity>
-                        </ScrollView>
+                        <FlatList
+                            data={words}
+                            keyExtractor={item => item.id}
+                            renderItem={itemData => (
+                                <WordItem
+                                    title={itemData.item.title}
+                                    onViewWord={() => {
+                                        props.navigation.navigate('Word', { 
+                                            wordId: itemData.item.id,
+                                            wordTitle: itemData.item.title,
+                                        });
+                                    }}
+                                />
+                            )}
+                        />
                     </Block>
                 </View>
             </TouchableWithoutFeedback >
@@ -141,10 +154,10 @@ const styles = StyleSheet.create({
         width: 360,
         height: 625,
         marginTop: 20,
-        paddingTop: 30,
-        paddingLeft: 30,
+        paddingTop: 10,
         backgroundColor: 'rgba(255, 255, 255, 0.85)',
         borderRadius: 15,
+        alignItems: 'center',
     },
     icon: {
         marginTop: 15,

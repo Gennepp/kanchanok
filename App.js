@@ -2,16 +2,20 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
-import { AppLoading } from 'expo' ;
+import { AppLoading } from 'expo';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 
-import Header from './components/Header';
-import LoginPfScreen from './screen/LoginPfScreen';
+import wordsReducer from './store/reducers/words';
 
 import WordNavigator from './navigation/WordNavigator';
 
+const rootReducer = combineReducers({
+  words: wordsReducer
+});
+
+const store = createStore(rootReducer);
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -23,25 +27,22 @@ const fetchFonts = () => {
 };
 
 export default function App() {
-  const [dataLoaded, setDataLoaded] = useState(false);
+  const [fontLoaded, setFontLoaded] = useState(false);
 
-  if(!dataLoaded){
-      return (
-          <AppLoading
-            startAsync={fetchFonts}
-            onFinish={() => setDataLoaded(true)}
-            onError={(err) => console.log(err)}
-          />
-      );
+  if (!fontLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontLoaded(true)}
+        onError={(err) => console.log(err)}
+      />
+    );
   }
-  
-  return  (
-    <WordNavigator />
-    // <View style={styles.screen}>
-    //   {/* <Header title="Dictionary" /> */}
-    //   <LoginPfScreen />
-    //   {/* <SignUpScreen /> */}
-    // </View>
+
+  return (
+    <Provider store={store}>
+      <WordNavigator />
+    </Provider>
   );
 }
 

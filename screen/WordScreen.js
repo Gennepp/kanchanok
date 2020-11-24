@@ -13,6 +13,7 @@ import {
     Entypo, FontAwesome,
     Ionicons, MaterialIcons
 } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
 
 import Block from '../components/Block';
 import Colors from '../constants/color';
@@ -23,11 +24,16 @@ import bgImage from '../assets/Word.png';
 
 
 const WordScreen = (props) => {
-    // console.log(props);
+
+    const wordId = props.navigation.getParam('wordId');
+    const selectorWord = useSelector(state =>
+        state.words.availableWords.find(prod => prod.id === wordId)
+    );
+
     return (
         <ImageBackground source={bgImage} style={styles.screen}>
             <Block style={styles.block1}>
-                <View style={styles.wordBox}><Text style={styles.wordTitle}>ปังปุริ</Text></View>
+                <View style={styles.wordBox}><Text style={styles.wordTitle}>{selectorWord.title}</Text></View>
                 <TouchableOpacity style={styles.star}>
                     <FontAwesome name="star" size={30} color={Colors.primary} />
                 </TouchableOpacity>
@@ -37,39 +43,42 @@ const WordScreen = (props) => {
             </Block>
 
             <View>
-                <Block style={styles.block2}>
-                    <Text style={styles.Text}>ปังปุริ</Text>
+                <Block style={styles.defContainer}>
+                    <View style={styles.defBox}><Text style={styles.definition}>{selectorWord.definition}</Text></View>
                 </Block>
             </View>
         </ImageBackground>
     );
 };
 
-WordScreen.navigationOptions = {
-    //headerShown: false,
-    headerTransparent: true,
-    title: 'Word',
-    headerTitleStyle: {
-        marginTop: -14,
-        color: 'white',
-        fontSize: 18,
-    },
-    headerBackTitleVisible: false,
-    headerBackImage: () =>
-        <TouchableOpacity
-            style={{
-                width: 400,
-                marginLeft: 6,
-                marginTop: -14,
-                backgroundColor: ''
-            }}
-        >
-            <MaterialIcons
-                name="navigate-before"
-                size={50}
-                color="white"
-            />
-        </TouchableOpacity>,
+WordScreen.navigationOptions = navData => {
+    return {
+        //headerShown: false,
+        headerTransparent: true,
+        //title: navData.navigation.getParam('wordTitle'),
+        title: null,
+        headerTitleStyle: {
+            marginTop: -14,
+            color: 'white',
+            fontSize: 18,
+        },
+        headerBackTitleVisible: false,
+        headerBackImage: () =>
+            <TouchableOpacity
+                style={{
+                    width: 400,
+                    marginLeft: 6,
+                    marginTop: -14,
+                    backgroundColor: ''
+                }}
+            >
+                <MaterialIcons
+                    name="navigate-before"
+                    size={50}
+                    color="white"
+                />
+            </TouchableOpacity>,
+    };
 };
 
 const styles = StyleSheet.create({
@@ -103,34 +112,41 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         elevation: 5,
         borderRadius: 15,
-        backgroundColor: 'rgba(255, 255, 255, 0.85)'
+        backgroundColor: 'rgba(255, 255, 255, 0.85)',
+        paddingRight: 18
     },
     wordBox: {
         flex: 6,
-        paddingTop: 20,
-        paddingLeft: 5,
         width: 260,
         height: 60,
-        //backgroundColor: 'black'
-    }, 
+        justifyContent: 'center',
+    },
     wordTitle: {
         color: '#3F1F72',
-        fontSize: 18,
-        marginLeft: 30,
+        fontSize: 23,
+        paddingTop: 6,
+        marginLeft: 35,
         fontFamily: 'baloo-bhaina-bold',
     },
-    star: {flex: 1,},
-    sound: {flex: 1,},
-    block2: {
-        paddingTop: 30,
-        paddingLeft: 30,
+    star: { flex: 1, },
+    sound: { flex: 1, },
+    defContainer: {
+        //paddingTop: 30,
+        //paddingLeft: 35,
         width: 360,
         height: 680,
         marginTop: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: 'rgba(255, 255, 255, 0.85)',
         borderRadius: 15,
-    }, 
-    Text: {
+    },
+    defBox: {
+        width: '82%',
+        height: '92%',
+        //backgroundColor: 'black',
+    },
+    definition: { 
         color: '#3F1F72',
         fontSize: 16,
         fontFamily: 'baloo-bhaina',
