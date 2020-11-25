@@ -12,7 +12,7 @@ import {
 
 import {
     FontAwesome, Foundation,
-    MaterialIcons
+    MaterialIcons,MaterialCommunityIcons
 } from '@expo/vector-icons';
 
 import Block from '../components/Block';
@@ -53,17 +53,22 @@ const ProfileScreen = (props) => {
                         <Text style={styles.option}>Teach Me</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.optionContainer} onPress={() => {
+                        props.navigation.navigate('Myword');
+                    }}>
+                        <MaterialCommunityIcons name="alphabetical" size={33} color="black" />
+                        <Text style={styles.option}>My word</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.optionContainer} onPress={() => {
                         props.navigation.navigate('AboutUs');
                     }}>
                         <FontAwesome name="users" size={26} color='#56BC6D' />
                         <Text style={styles.option}>About Us</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.optionContainer} onPress={() => {
-                        props.navigation.navigate('Myword');
+                    <View style={styles.optionContainer} onPress={() => {
                     }}>
                         <MaterialIcons name="error" size={28} color='#4F78E3' />
                         <Text style={styles.option}>Version 1.0.0</Text>
-                    </TouchableOpacity>
+                    </View>
                 </Block>
                 <Buttons style={styles.btnLogout} onPress={() => { Keyboard.dismiss(); }}>
                     <Text style={styles.logout}>Log out</Text>
@@ -142,7 +147,7 @@ const styles = StyleSheet.create({
         marginVertical: 3.3,
         paddingLeft: 15,
         width: 300,
-        height: 60,
+        height: 40,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
