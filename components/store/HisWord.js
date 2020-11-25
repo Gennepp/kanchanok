@@ -2,18 +2,16 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 import Colors from '../../constants/color';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 
-const WordItem = props => {
+const HisWord = props => {
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.wordContainer} 
-            onPress={props.onViewWord} 
-            onPressIn={props.onAddHis}>
+           
+            <TouchableOpacity style={styles.wordContainer} onPress={props.onViewWord}>
                 <Text style={styles.text}>{props.title}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.star} onPress={props.onAddFav}>
-                <FontAwesome name="star-o" size={25} color={Colors.primary} />
+                {/* <Text style={styles.text}>{props.quantity}</Text>
+                <Text style={styles.text}>{props.amount}</Text> */}
             </TouchableOpacity>
             <TouchableOpacity style={styles.sound} onPress={() => { }}>
                 <FontAwesome name="volume-up" size={25} color={Colors.primary} />
@@ -21,8 +19,7 @@ const WordItem = props => {
             <View style={{
                 borderBottomWidth: 1,
                 borderBottomColor: Colors.line,
-            }}>
-            </View>
+            }}></View>
         </View>
     );
 };
@@ -30,6 +27,7 @@ const WordItem = props => {
 const styles = StyleSheet.create({
     container: {
         width: 330,
+        maxWidth: '100%',
         height: 50,
         borderBottomWidth: 1,
         borderBottomColor: Colors.line,
@@ -40,7 +38,7 @@ const styles = StyleSheet.create({
         height: 50,
         paddingLeft: 12,
         justifyContent: 'center',
-        flex: 7,
+        flex: 8,
     },
     text: {
         color: Colors.primary,
@@ -51,4 +49,4 @@ const styles = StyleSheet.create({
     sound: { flex: 1, },
 });
 
-export default WordItem;
+export default HisWord;

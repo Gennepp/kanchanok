@@ -2,21 +2,20 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 import Colors from '../../constants/color';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 
-const WordItem = props => {
+const MyWord = props => {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.wordContainer} 
-            onPress={props.onViewWord} 
-            onPressIn={props.onAddHis}>
+            onPress={props.onViewWord}>
                 <Text style={styles.text}>{props.title}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.star} onPress={props.onAddFav}>
+            {/* <TouchableOpacity style={styles.star} onPress={props.onAddFav}>
                 <FontAwesome name="star-o" size={25} color={Colors.primary} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.sound} onPress={() => { }}>
-                <FontAwesome name="volume-up" size={25} color={Colors.primary} />
+            </TouchableOpacity> */}
+            <TouchableOpacity style={styles.sound} onPress={props.onDelete}>
+            <MaterialCommunityIcons name="delete-forever-outline" size={30} color={Colors.primary} />
             </TouchableOpacity>
             <View style={{
                 borderBottomWidth: 1,
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
         height: 50,
         paddingLeft: 12,
         justifyContent: 'center',
-        flex: 7,
+        flex: 6,
     },
     text: {
         color: Colors.primary,
@@ -51,4 +50,4 @@ const styles = StyleSheet.create({
     sound: { flex: 1, },
 });
 
-export default WordItem;
+export default MyWord;
