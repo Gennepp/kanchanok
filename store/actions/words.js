@@ -38,9 +38,14 @@ export const fetchWords = () => {
 };
 
 export const deleteMyWord = wordId => {
-    return {
-        type: DELETE_MY_WORD,
-        wid: wordId
+    return async dispatch => {
+        await fetch('https://dictapp-94153.firebaseio.com/words/${wordId}.json', {
+            method: 'DELETE',
+        });
+        dispatch({
+            type: DELETE_MY_WORD,
+            wid: wordId
+        });
     };
 };
 
@@ -74,22 +79,16 @@ export const createWord = (title, definition) => {
 
 export const updateWord = (id, title, definition) => {
     return async dispatch => {
-        const response = await fetch('https://dictapp-94153.firebaseio.com/words.json');
-
-        if (!response.ok) {
-            throw new Error('Something went wrong!');
-        }
-
-        const resData = await response.json();
-        const loadedWords = [];
-
-        for (const key in resData) {
-            loadedWords.push(new Word(
-                key,
-                'u1',
-                resData[key].title,
-                resData[key].definition));
-        }
+        await fetch('https://dictapp-94153.firebaseio.com/words/${id}.json', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title,
+                definition
+            })
+        });
 
         dispatch({
             type: UPDATE_WORD,
