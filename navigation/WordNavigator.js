@@ -174,7 +174,7 @@ const AuthNavigator = createStackNavigator({
 
 const MainNavigator = createSwitchNavigator({
     Auth: AuthNavigator,
-    Search: WordNavigator,
+    Search: WordTabNavigator,
 });
 
 export default createAppContainer(WordTabNavigator);

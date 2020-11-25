@@ -17,7 +17,7 @@ import Block from '../components/Block';
 import Colors from '../constants/color';
 import Input from '../components/Input';
 import Buttons from '../components/Button';
-import * as authActions from '../actions/auth';
+import * as authActions from '../store/actions/auth';
 
 import bgImage from '../assets/Login.png';
 import { FontAwesome, FontAwesome5, MaterialIcons, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -48,40 +48,40 @@ const formReducer = (state, action) => {
 };
 
 const LoginPfScreen = (props) => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // const [formState, dispatchFormState] = useReducer(formReducer, {
-    //     inputValues: {
-    //         email: '',
-    //         password: ''
-    //     },
-    //     inputValidities: {
-    //         email: false,
-    //         password: false
-    //     },
-    //     formIsValid: false
-    // });
+    const [formState, dispatchFormState] = useReducer(formReducer, {
+        inputValues: {
+            email: '',
+            password: ''
+        },
+        inputValidities: {
+            email: false,
+            password: false
+        },
+        formIsValid: false
+    });
 
-    // const signupHandler = () => {
-    //     dispatch(
-    //         authActions.signup(
-    //             formState.inputValues.email,
-    //             formState.inputValues.password
-    //         )
-    //     );
-    // };
+    const signupHandler = () => {
+        dispatch(
+            authActions.signup(
+                formState.inputValues.email,
+                formState.inputValues.password
+            )
+        );
+    };
 
-    // const inputChangeHandler = useCallback(
-    //     (inputIdentifier, inputValue, inputValidity) => {
-    //         dispatchFormState({
-    //             type: FORM_INPUT_UPDATE,
-    //             value: inputValue,
-    //             isValid: inputValidity,
-    //             input: inputIdentifier
-    //         });
-    //     },
-    //     [dispatchFormState]
-    // );
+    const inputChangeHandler = useCallback(
+        (inputIdentifier, inputValue, inputValidity) => {
+            dispatchFormState({
+                type: FORM_INPUT_UPDATE,
+                value: inputValue,
+                isValid: inputValidity,
+                input: inputIdentifier
+            });
+        },
+        [dispatchFormState]
+    );
 
     return (
         <ImageBackground source={bgImage} style={styles.backgroundContainer}>
@@ -104,16 +104,15 @@ const LoginPfScreen = (props) => {
                             <View style={styles.inputContainer}>
                                 <Input
                                     style={styles.input}
-                                    id="username"
+                                    id="email"
                                     keyboardType="email-address"
-                                    errorText="please enter a valid input!"
+                                    errorText="please enter a valid email address!"
                                     placeholder={'Username'}
                                     placeholderTextColor={Colors.primary}
                                     autoCorrect={false}
                                     autoCapitalize='none'
-                                    maxLength={15}
                                     returnKeyType='next'
-                                    //onInputChange={inputChangeHandler}
+                                    onInputChange={inputChangeHandler}
                                     initialValue=""
                                 />
                                 <Input
@@ -126,16 +125,14 @@ const LoginPfScreen = (props) => {
                                     placeholderTextColor={Colors.primary}
                                     autoCorrect={false}
                                     autoCapitalize='none'
-                                    minLength={5}
-                                    maxLength={15}
                                     returnKeyType='next'
-                                    //onInputChange={inputChangeHandler}
+                                    onInputChange={inputChangeHandler}
                                     initialValue=""
                                 />
                             </View>
                         </View>
 
-                        <Buttons style={styles.buttonLogin} onPress={() => { }}>
+                        <Buttons style={styles.buttonLogin} onPress={signupHandler}>
                             <Text style={styles.login}>LOGIN</Text>
                         </Buttons>
 
@@ -156,13 +153,6 @@ const LoginPfScreen = (props) => {
                             </TouchableOpacity>
                         </View>
                     </Block>
-
-                    {/* <View style={styles.bottomButton}>
-                        <Button title='Sign Up' onPress={() => {
-                            props.navigation.navigate('SignUp');
-                        }} color={Colors.primary} />
-                        <Button title='Forget password?' onPress={() => { }} color={Colors.primary} />
-                    </View> */}
 
                 </KeyboardAvoidingView>
             </TouchableWithoutFeedback >

@@ -68,9 +68,9 @@ const Input = props => {
             <TextInput
                 {...props}
                 style={{ ...styles.input, ...props.style }}
-            // value={inputState.value}
-            // onChangeText={textChangeHandler}
-            // onBlur={lostFocusHandler}
+            //value={inputState.value}
+            //onChangeText={textChangeHandler}
+            //onBlur={lostFocusHandler}
             />
             {!inputState.isValid && <Text style={styles.errorText}>{props.errorText}</Text>}
         </View>
