@@ -56,6 +56,7 @@ const HistoryNavigator = createStackNavigator({
 const ProfileNavigator = createStackNavigator({
     Profile: ProfileScreen,
     Acs: AcsScreen,
+    Myword: MyWordScreen,
     Teach: TeachScreen,
     AboutUs: AboutUsScreen,
     Myword: MyWordScreen,

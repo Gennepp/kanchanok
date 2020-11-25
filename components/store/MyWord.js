@@ -11,7 +11,7 @@ const MyWord = props => {
             onPress={props.onViewWord}>
                 <Text style={styles.text}>{props.title}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.star} onPress={props.onAddFav}>
+            <TouchableOpacity style={styles.star} onPress={props.onEditWord}>
                 <FontAwesome name="star-o" size={25} color={Colors.primary} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.sound} onPress={props.onDelete}>

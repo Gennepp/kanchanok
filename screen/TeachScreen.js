@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     Dimensions,
     ImageBackground,
@@ -15,16 +15,34 @@ import Input from '../components/Input';
 import Buttons from '../components/Button';
 import Colors from '../constants/color';
 import bgImage from '../assets/Teach.png';
+import * as wordsActions from '../store/actions/words';
 
 const TeachScreen = (props) => {
     const wordId = props.navigation.getParam('wordId');
-    const editedMyWord = useSelector(state => 
+    const editedMyWord = useSelector(state =>
         state.words.userWords.find(word => word.id === wordId)
     );
 
+    const dispatch = useDispatch();
+
     const [title, setTitle] = useState(editedMyWord ? editedMyWord.title : '');
-    const [definiion, setDefinition] = useState(editedMyWord ? editedMyWord.definiion : '');
-    
+    const [definition, setDefinition] = useState(editedMyWord ? editedMyWord.definition : '');
+
+    const submitHandler = useCallback(() => {
+        if (editedMyWord) {
+            dispatch(wordsActions.updateWord(wordId, title, definition));
+        } else {
+            dispatch(wordsActions.createWord(title, definition));
+        }
+        props.navigation.goBack();
+    }, [dispatch, wordId, title, definition]);
+
+    useEffect(() => {
+        props.navigation.setParams({ submit: submitHandler });
+    }, [submitHandler]);
+
+    const submitFn = props.navigation.getParam('submit');
+
     return (
         <ImageBackground source={bgImage} style={styles.backgroundContainer}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
@@ -43,7 +61,7 @@ const TeachScreen = (props) => {
                             <Input
                                 style={styles.input}
                                 value={title}
-                                onChange={text => setTitle(text)}
+                                onChangeText={text => setTitle(text)}
                                 placeholder={'Type something...'}
                                 placeholderTextColor={Colors.primary}
                                 autoCorrect={false}
@@ -52,8 +70,8 @@ const TeachScreen = (props) => {
                             />
                             <Input
                                 style={styles.input2}
-                                value={definiion}
-                                onChange={text => setDefinition(text)}
+                                value={definition}
+                                onChangeText={text => setDefinition(text)}
                                 placeholder={'Meaning...'}
                                 placeholderTextColor={Colors.primary}
                                 autoCorrect={false}
@@ -61,8 +79,8 @@ const TeachScreen = (props) => {
                                 maxLength={100}
                             />
                         </View>
-                        <Buttons style={styles.btnTeach}>
-                            <Text style={styles.Text}>Teach me</Text>
+                        <Buttons style={styles.btnTeach} onPress={submitFn}>
+                            <Text style={styles.Text}>{props.navigation.getParam('wordId') ? 'Edit' : 'Teach Me'}</Text>
                         </Buttons>
 
                     </View>
@@ -120,30 +138,30 @@ const styles = StyleSheet.create({
         width: '100%',
         maxWidth: '100%',
     },
-    YText :{
+    YText: {
         color: "#ffffff",
         fontSize: 34,
-        
+
         fontFamily: "baloo-bhaina-bold",
         marginTop: 100,
         marginLeft: -180
     },
-    TText :{
+    TText: {
         color: "#ffffff",
         fontSize: 48,
-        
+
         fontFamily: "baloo-bhaina-bold",
         marginTop: -85,
         marginLeft: 60
     },
-    IText :{
+    IText: {
         color: "#ffffff",
         fontSize: 34,
         fontFamily: "baloo-bhaina-bold",
         marginTop: 0,
         marginLeft: -350
     },
-    LText :{
+    LText: {
         color: "#ffffff",
         fontSize: 48,
         fontFamily: "baloo-bhaina-bold",

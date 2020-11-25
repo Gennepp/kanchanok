@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    Dimensions,
+    Dimensions, Alert,
     ImageBackground,
     View, ScrollView,
     Text, TextInput,
@@ -24,6 +24,21 @@ import MyWord from '../components/store/MyWord';
 const MyWordScreen = props => {
     const userWords = useSelector(state => state.words.userWords);
     const dispatch = useDispatch();
+
+    const editWordHandler = (id) => {
+        props.navigation.navigate('Teach', { wordId: id });
+    };
+
+    const deleteHandler = (id) => {
+        Alert.alert('Are You Sure?', 'Do you really want to delete this word?', [
+            { text: 'No', style: 'default' },
+            { text: 'Yes', style: 'destructive', onPress: () => {
+                    dispatch(WordsActions.deleteMyWord(id));
+                }
+            }
+        ])
+    }
+
     return (
         <ImageBackground source={bgImage} style={styles.backgroundContainer}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
@@ -52,8 +67,11 @@ const MyWordScreen = props => {
                                 renderItem={itemData => (
                                     <MyWord
                                         title={itemData.item.title}
-                                        onViewWord={() => {}}
-                                        onDelete={() => {dispatch(WordsActions.deleteMyWord(itemData.item.id));}}
+                                        onViewWord={() => { }}
+                                        onEditWord={() => {
+                                            editWordHandler(itemData.item.id);
+                                        }}
+                                        onDelete={deleteHandler.bind(this, itemData.item.id)}
                                     />
                                 )}
                             />
