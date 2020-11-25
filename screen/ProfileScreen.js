@@ -12,7 +12,7 @@ import {
 
 import {
     FontAwesome, Foundation,
-    MaterialIcons
+    MaterialIcons, MaterialCommunityIcons
 } from '@expo/vector-icons';
 
 import Block from '../components/Block';
@@ -38,12 +38,12 @@ const ProfileScreen = (props) => {
                     <Text style={styles.name}>Nongnoii</Text>
                 </Block>
 
-                <Buttons style={styles.acsButton} onPress={() => {
+                {/* <Buttons style={styles.acsButton} onPress={() => {
                     props.navigation.navigate('Acs');
                 }}
                 >
                     <Text style={styles.buttonTitle}>Account setting</Text>
-                </Buttons>
+                </Buttons> */}
 
                 <Block style={styles.block}>
                     <TouchableOpacity style={styles.optionContainer} onPress={() => {
@@ -53,25 +53,29 @@ const ProfileScreen = (props) => {
                         <Text style={styles.option}>Teach Me</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.optionContainer} onPress={() => {
+                        props.navigation.navigate('Myword');
+                    }}>
+                        <MaterialCommunityIcons name="alphabetical" size={33} color="black" />
+                        <Text style={styles.option}>My word</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.optionContainer} onPress={() => {
                         props.navigation.navigate('AboutUs');
                     }}>
                         <FontAwesome name="users" size={26} color='#56BC6D' />
                         <Text style={styles.option}>About Us</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.optionContainer} onPress={() => {
-                        props.navigation.navigate('Myword');
-                    }}>
+                    <View style={styles.optionContainer} >
                         <MaterialIcons name="error" size={28} color='#4F78E3' />
                         <Text style={styles.option}>Version 1.0.0</Text>
-                    </TouchableOpacity>
+                    </View>
                 </Block>
-                <Buttons style={styles.btnLogout} onPress={() => { Keyboard.dismiss(); }}>
+                {/* <Buttons style={styles.btnLogout} onPress={() => { Keyboard.dismiss(); }}>
                     <Text style={styles.logout}>Log out</Text>
                 </Buttons >
 
                 <Buttons style={styles.buttonLogin} onPress={() => { props.navigation.navigate('Login'); }}>
                     <Text style={styles.login}>LOGIN</Text>
-                </Buttons>
+                </Buttons> */}
             </View>
         </ImageBackground >
     );
@@ -111,7 +115,7 @@ const styles = StyleSheet.create({
     nameBox: {
         width: 270,
         height: 50,
-        marginTop: 30,
+        marginTop: 40,
         alignItems: 'center',
         backgroundColor: '(rgba(255, 255, 255, 1)',
     },
@@ -134,8 +138,8 @@ const styles = StyleSheet.create({
     },
     block: {
         width: 300,
-        height: 200,
-        marginTop: 30,
+        height: 270,
+        marginTop: 40,
         backgroundColor: 'rgba(255,255,255,1)',
     },
     optionContainer: {
