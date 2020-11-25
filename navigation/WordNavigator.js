@@ -6,7 +6,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
 import SignUpScreen from '../screen/SignUpScreen';
-import TestScreen from '../screen/TestScreen';
+import TestScreen from '../screen/MyWordScreen';
 import LoginPfScreen from '../screen/LoginPfScreen';
 import ForgotScreen from '../screen/ForgotScreen';
 import SearchScreen from '../screen/SearchScreen';
@@ -18,6 +18,7 @@ import TeachScreen from '../screen/TeachScreen';
 import AboutUsScreen from '../screen/AboutUsScreen';
 import WordScreen from '../screen/WordScreen';
 import LoginScreen from '../screen/LoginScreen';
+import MyWordScreen from '../screen/MyWordScreen';
 
 import Colors from '../constants/color';
 
@@ -29,36 +30,41 @@ import { createMaterial } from 'react-navigation-material-bottom-tabs';
 const WordNavigator = createStackNavigator({
     Search: SearchScreen,
     Word: WordScreen,
+    // Favorite: FavoriteScreen,
+    // History: HistoryScreen,
+    // Profile: ProfileScreen,
+    // Welcome: LoginScreen,
+    // Acs: AcsScreen,
+    // Teach: TeachScreen,
+    // AboutUs: AboutUsScreen,
+    // Login: LoginPfScreen,
+    // SignUp: SignUpScreen,
+    // Forgot: ForgotScreen,
+    // Myword: MyWordScreen,
+});
+
+const FavoriteNavigator = createStackNavigator({
     Favorite: FavoriteScreen,
+    Word: WordScreen,
+});
+
+const HistoryNavigator = createStackNavigator({
     History: HistoryScreen,
+    Word: WordScreen,
+});
+
+const ProfileNavigator = createStackNavigator({
     Profile: ProfileScreen,
-    Welcome: LoginScreen,
     Acs: AcsScreen,
     Teach: TeachScreen,
     AboutUs: AboutUsScreen,
+    Myword: MyWordScreen,
+    Word: WordScreen,
+    Welcome: LoginScreen,
     Login: LoginPfScreen,
-    SignUp: SignUpScreen,
     Forgot: ForgotScreen,
-    Test: TestScreen,
-}, {
-    defaultNavigationOptions: {
-        //headerShown: false,  
-        //headerTransparent: true
-    }
-}
-);
-
-WordNavigator.navigationOptions = ({ navigation }) => {
-    let tabBarVisible = true;
-  
-    if (navigation.state.index > 0) {
-      tabBarVisible = false;
-    }
-  
-    return {
-      tabBarVisible,
-    };
-};  
+    SignUp: SignUpScreen,
+});
 
 const WordTabNavigator = createBottomTabNavigator({
     Search: {
@@ -69,21 +75,21 @@ const WordTabNavigator = createBottomTabNavigator({
         }
     },
     Favorite: {
-        screen: FavoriteScreen, navigationOptions: {
+        screen: FavoriteNavigator, navigationOptions: {
             tabBarIcon: (tabInfo) => {
                 return <FontAwesome name="star" size={40} color={tabInfo.tintColor} />;
             }
         }
     },
     History: {
-        screen: HistoryScreen, navigationOptions: {
+        screen: HistoryNavigator, navigationOptions: {
             tabBarIcon: (tabInfo) => {
                 return <Feather name="clock" size={40} color={tabInfo.tintColor} />;
             }
         }
     },
     Profile: {
-        screen: ProfileScreen, navigationOptions: {
+        screen: ProfileNavigator, navigationOptions: {
             tabBarIcon: (tabInfo) => {
                 return <MaterialCommunityIcons name="face" size={45} color={tabInfo.tintColor} />
             }
@@ -118,10 +124,48 @@ const WordTabNavigator = createBottomTabNavigator({
     },
 });
 
-const FavoriteNavigator = createStackNavigator({
-    Favorite: FavoriteScreen,
-    Word: WordScreen,
-});
+WordNavigator.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true;
+
+    if (navigation.state.index > 0) {
+        tabBarVisible = false;
+    }
+    return {
+        tabBarVisible,
+    };
+};
+
+FavoriteNavigator.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true;
+
+    if (navigation.state.index > 0) {
+        tabBarVisible = false;
+    }
+    return {
+        tabBarVisible,
+    };
+};
+
+HistoryNavigator.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true;
+
+    if (navigation.state.index > 0) {
+        tabBarVisible = false;
+    }
+    return {
+        tabBarVisible,
+    };
+};
+ProfileNavigator.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true;
+
+    if (navigation.state.index > 0) {
+        tabBarVisible = false;
+    }
+    return {
+        tabBarVisible,
+    };
+};
 
 const AuthNavigator = createStackNavigator({
     Auth: LoginPfScreen,
