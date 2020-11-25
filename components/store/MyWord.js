@@ -11,9 +11,9 @@ const MyWord = props => {
             onPress={props.onViewWord}>
                 <Text style={styles.text}>{props.title}</Text>
             </TouchableOpacity>
-            {/* <TouchableOpacity style={styles.star} onPress={props.onAddFav}>
+            <TouchableOpacity style={styles.star} onPress={props.onAddFav}>
                 <FontAwesome name="star-o" size={25} color={Colors.primary} />
-            </TouchableOpacity> */}
+            </TouchableOpacity>
             <TouchableOpacity style={styles.sound} onPress={props.onDelete}>
             <MaterialCommunityIcons name="delete-forever-outline" size={30} color={Colors.primary} />
             </TouchableOpacity>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         height: 50,
         paddingLeft: 12,
         justifyContent: 'center',
-        flex: 6,
+        flex: 7,
     },
     text: {
         color: Colors.primary,

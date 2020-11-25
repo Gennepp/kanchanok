@@ -17,11 +17,14 @@ import Colors from '../constants/color';
 import bgImage from '../assets/Teach.png';
 
 const TeachScreen = (props) => {
-    const [title, setTitle] = useState('');
-    const [definiion, setDefinition] = useState('');
-    
     const wordId = props.navigation.getParam('wordId');
+    const editedMyWord = useSelector(state => 
+        state.words.userWords.find(word => word.id === wordId)
+    );
 
+    const [title, setTitle] = useState(editedMyWord ? editedMyWord.title : '');
+    const [definiion, setDefinition] = useState(editedMyWord ? editedMyWord.definiion : '');
+    
     return (
         <ImageBackground source={bgImage} style={styles.backgroundContainer}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
