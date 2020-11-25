@@ -17,7 +17,6 @@ import AcsScreen from '../screen/AcsScreen';
 import TeachScreen from '../screen/TeachScreen';
 import AboutUsScreen from '../screen/AboutUsScreen';
 import WordScreen from '../screen/WordScreen';
-import LoginScreen from '../screen/LoginScreen';
 import MyWordScreen from '../screen/MyWordScreen';
 
 import Colors from '../constants/color';
@@ -61,7 +60,6 @@ const ProfileNavigator = createStackNavigator({
     AboutUs: AboutUsScreen,
     Myword: MyWordScreen,
     Word: WordScreen,
-    Welcome: LoginScreen,
     Login: LoginPfScreen,
     Forgot: ForgotScreen,
     SignUp: SignUpScreen,

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     Dimensions,
     ImageBackground,
     View, Text, TextInput,
-    FlatList,
+    FlatList, ActivityIndicator,
     StyleSheet, Button,
     TouchableWithoutFeedback,
     TouchableOpacity, icon,
@@ -21,6 +21,7 @@ import Buttons from '../components/Button';
 import WordItem from '../components/store/WordItem';
 import * as FavActions from '../store/actions/favorite';
 import * as HisActions from '../store/actions/history';
+import * as wordsActions from '../store/actions/words';
 
 import bgImage from '../assets/search.png';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -28,8 +29,54 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 const SearchScreen = (props) => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState();
     const words = useSelector(state => state.words.availableWords);
     const dispatch = useDispatch();
+
+    const loadedWords = useCallback(async () => {
+        console.log('load');
+        setError(null);
+        setIsLoading(true);
+        try {
+            await dispatch(wordsActions.fetchWords());
+        } catch (err) {
+            setError(err.message);
+        }
+        setIsLoading(false);
+    }, [dispatch, setIsLoading, setError]);
+
+    useEffect(() => {
+        const willFocusSub = props.navigation.addListener('willFocus', loadedWords);
+
+        return () => {
+            willFocusSub.remove();
+        };
+    },[loadedWords]);
+
+    useEffect(() => {
+        loadedWords();
+    }, [dispatch, loadedWords]);
+
+    if (error) {
+        return <View style={styles.indicator}>
+            <Text>An Error Ocurred!</Text>
+            <Button title="Try again" onPress={loadedWords} color={Colors.primary} />
+        </View>
+    }
+
+    if (isLoading) {
+        return <View style={styles.indicator}>
+            <ActivityIndicator size='large' color={Colors.primary} />
+        </View>
+    }
+
+    // if (!isLoading && words.length === 0) {
+    //     return (<View style={styles.indicator}>
+    //         <Text>No words found.</Text>
+    //     </View>
+    //     );
+    // }
 
     return (
 
@@ -64,7 +111,7 @@ const SearchScreen = (props) => {
                                 <WordItem
                                     title={itemData.item.title}
                                     onViewWord={() => {
-                                        props.navigation.navigate('Word', { 
+                                        props.navigation.navigate('Word', {
                                             wordId: itemData.item.id,
                                             wordTitle: itemData.item.title,
                                         });
@@ -108,6 +155,11 @@ SearchScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
+    indicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     backgroundContainer: {
         flex: 1,
         justifyContent: 'center',

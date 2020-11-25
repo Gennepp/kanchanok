@@ -3,6 +3,7 @@ import {
     DELETE_MY_WORD,
     CREATE_WORD,
     UPDATE_WORD,
+    SET_WORDS,
 } from '../actions/words';
 import Word from '../../models/word';
 
@@ -13,9 +14,14 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case SET_WORDS:
+            return {
+                availableWords: action.words,
+                userWords: action.words.filter(word => word.ownerId === 'u1')
+            }
         case CREATE_WORD:
             const newWord = new Word(
-                new Date().toString(),
+                action.wordData.id,
                 'u1',
                 action.wordData.title,
                 action.wordData.definition,
