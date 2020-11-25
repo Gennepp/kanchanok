@@ -12,30 +12,18 @@ import {
 } from "react-native";
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Ionicons } from '@expo/vector-icons'
+import { MaterialIcons, Ionicons } from '@expo/vector-icons'
 import bgImage from "../assets/Favorite.png";
 import Block from "../components/BlockNoShadow";
 import Colors from '../constants/color';
 import FavWord from '../components/store/FavWord';
-import * as FavActions from '../store/actions/favorite';
+import * as WordsActions from '../store/actions/words';
+import WordItem from '../components/store/WordItem';
+import MyWord from '../components/store/MyWord';
 
-const FavoriteScreen = (props) => {
-    const favTotalAmount = useSelector(state => state.favorite.totalAmount);
-    const favWords = useSelector(state => {
-        const transformedFavWords = [];
-        for (const key in state.favorite.words) {
-            transformedFavWords.push({
-                wordId: key,
-                wordTitle: state.favorite.words[key].wordTitle,
-                wordDefinition: state.favorite.words[key].wordDefinition,
-                quantity: state.favorite.words[key].quantity,
-                sum: state.favorite.words[key].sum,
-            })
-        }
-        return transformedFavWords;
-    });
+const MyWordScreen = props => {
+    const userWords = useSelector(state => state.words.userWords);
     const dispatch = useDispatch();
-
     return (
         <ImageBackground source={bgImage} style={styles.backgroundContainer}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
@@ -47,34 +35,25 @@ const FavoriteScreen = (props) => {
                 >
                     <View style={styles.screen2}>
                         <View style={styles.header}>
-                            <Text style={styles.FavText}> Favorite </Text>
-                            <TouchableOpacity
+                            <Text style={styles.FavText}>My Words</Text>
+                            {/* <TouchableOpacity
                                 style={styles.icon}
-                                disabled={favWords.length === 0}
-                                onPress={() => {dispatch(FavActions.removeAllFromFav());}}
+                                //disabled={favWords.length === 0}
+                                onPress={() => { }}
                             >
                                 <Ionicons name="ios-trash" size={40} color="#fff" />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </View>
 
                         <Block style={styles.FavBlock}>
                             <FlatList
-                                data={favWords}
-                                keyExtractor={item => item.wordId}
+                                data={userWords}
+                                keyExtractor={item => item.id}
                                 renderItem={itemData => (
-                                    <FavWord
-                                        title={itemData.item.wordTitle}
-                                        quantity={itemData.item.quantity}
-                                        amount={itemData.item.sum}
-                                        onViewWord={() => {
-                                            props.navigation.navigate('Word', {
-                                                wordId: itemData.item.wordId,
-                                                wordTitle: itemData.item.wordTitle,
-                                            });
-                                        }}
-                                        onRemove={() => { 
-                                            dispatch(FavActions.removeFromFav(itemData.item.wordId));
-                                        }}
+                                    <MyWord
+                                        title={itemData.item.title}
+                                        onViewWord={() => {}}
+                                        onDelete={() => {dispatch(WordsActions.deleteMyWord(itemData.item.id));}}
                                     />
                                 )}
                             />
@@ -86,11 +65,34 @@ const FavoriteScreen = (props) => {
     );
 };
 
-
-FavoriteScreen.navigationOptions = {
-    headerTransparent: true,
-    title: null,
-    headerBackTitleVisible: false,
+MyWordScreen.navigationOptions = navData => {
+    return {
+        //headerShown: false,
+        headerTransparent: true,
+        //title: navData.navigation.getParam('wordTitle'),
+        title: null,
+        headerTitleStyle: {
+            marginTop: -14,
+            color: 'white',
+            fontSize: 18,
+        },
+        headerBackTitleVisible: false,
+        headerBackImage: () =>
+            <TouchableOpacity
+                style={{
+                    width: 400,
+                    marginLeft: 6,
+                    marginTop: -14,
+                    backgroundColor: ''
+                }}
+            >
+                <MaterialIcons
+                    name="navigate-before"
+                    size={50}
+                    color="white"
+                />
+            </TouchableOpacity>,
+    };
 };
 
 const styles = StyleSheet.create({
@@ -112,21 +114,21 @@ const styles = StyleSheet.create({
         maxWidth: '100%',
     },
     header: {
-        marginTop: 70,
+        marginTop: 80,
         width: 360,
         height: 60,
         flexDirection: 'row',
         alignItems: 'center',
     },
     icon: {
-        marginTop: 5,
+        marginTop: 20,
         flex: 1,
         alignItems: 'center',
     },
     FavText: {
-        marginTop: -10,
+        marginLeft: 20,
         color: "#ffffff",
-        fontSize: 50,
+        fontSize: 48,
         fontFamily: "baloo-bhaina-bold",
         flex: 6,
     },
@@ -139,12 +141,12 @@ const styles = StyleSheet.create({
     },
     FavBlock: {
         width: 360,
-        height: 625,
-        marginTop: 20,
+        height: 690,
+        marginTop: 30,
         paddingTop: 10,
         backgroundColor: 'rgba(255, 255, 255, 0.85)',
         borderRadius: 15,
-        alignItems: 'center',
+        //alignItems: 'center',
     },
     Text: {
         color: Colors.primary,
@@ -153,4 +155,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default FavoriteScreen;
+export default MyWordScreen;

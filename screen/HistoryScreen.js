@@ -1,6 +1,7 @@
 import React from "react";
 import {
     Dimensions,
+    FlatList,
     ImageBackground,
     ScrollView,
     View, Text, TextInput,
@@ -9,13 +10,31 @@ import {
     TouchableOpacity, Keyboard,
     KeyboardAvoidingView,
 } from "react-native";
+import { useSelector, useDispatch } from 'react-redux';
+
 
 import { Ionicons } from '@expo/vector-icons'
 import bgImage from "../assets/History.png";
 import Block from "../components/BlockNoShadow";
 import Colors from '../constants/color';
+import HisWord from '../components/store/HisWord';
+import * as HisActions from '../store/actions/history';
 
 const HistoryScreen = (props) => {
+    const hisWords = useSelector(state => {
+        const transformedHisWords = [];
+        for (const key in state.history.words) {
+            transformedHisWords.push({
+                wordId: key,
+                wordTitle: state.history.words[key].wordTitle,
+                wordDefinition: state.history.words[key].wordDefinition,
+                quantity: state.history.words[key].quantity,
+                sum: state.history.words[key].sum,
+            })
+        }
+        return transformedHisWords;
+    });
+    const dispatch = useDispatch();
     return (
         <ImageBackground source={bgImage} style={styles.backgroundContainer}>
             <TouchableWithoutFeedback
@@ -30,27 +49,45 @@ const HistoryScreen = (props) => {
                             <Text style={styles.HisText}> History </Text>
                             <TouchableOpacity
                                 style={styles.icon}
-                                onPress={() => { }}
+                                onPress={() => {dispatch(HisActions.removeFromHis());}}
                             >
                                 <Ionicons name="ios-trash" size={40} color="#fff" />
                             </TouchableOpacity>
 
                         </View>
                         <Block style={styles.HisBlock}>
-                            <ScrollView>
-                                <TouchableOpacity onPress={() => {
-                                    props.navigation.navigate('Word');
-                                }}
-                                >
-                                    <Text style={styles.Text}>ตุยเย่</Text>
-                                </TouchableOpacity>
-                            </ScrollView>
+                        <FlatList
+                                data={hisWords}
+                                keyExtractor={item => item.wordId}
+                                renderItem={itemData => (
+                                    <HisWord
+                                        title={itemData.item.wordTitle}
+                                        quantity={itemData.item.quantity}
+                                        amount={itemData.item.sum}
+                                        onViewWord={() => {
+                                            props.navigation.navigate('Word', {
+                                                wordId: itemData.item.wordId,
+                                                wordTitle: itemData.item.wordTitle,
+                                            });
+                                        }}
+                                        onRemove={() => { 
+                                            dispatch(HisActions.removeFromHis(itemData.item.wordId));
+                                        }}
+                                    />
+                                )}
+                            />
                         </Block>
 
                     </View>
             </TouchableWithoutFeedback>
         </ImageBackground>
     );
+};
+
+HistoryScreen.navigationOptions = {
+    headerTransparent: true,
+    title: null,
+    headerBackTitleVisible: false,
 };
 
 const styles = StyleSheet.create({
@@ -94,10 +131,10 @@ const styles = StyleSheet.create({
         width: 360,
         height: 625,
         marginTop: 20,
-        paddingTop: 30,
-        paddingLeft: 30,
+        paddingTop: 10,
         backgroundColor: 'rgba(255, 255, 255, 0.85)',
         borderRadius: 15,
+        alignItems: 'center',
     },
     Text: {
         color: Colors.primary,

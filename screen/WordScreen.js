@@ -13,12 +13,13 @@ import {
     Entypo, FontAwesome,
     Ionicons, MaterialIcons
 } from '@expo/vector-icons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Block from '../components/Block';
 import Colors from '../constants/color';
 import Input from '../components/Input';
 import Buttons from '../components/Button';
+import * as FavActions from '../store/actions/favorite';
 
 import bgImage from '../assets/Word.png';
 
@@ -29,12 +30,15 @@ const WordScreen = (props) => {
     const selectorWord = useSelector(state =>
         state.words.availableWords.find(prod => prod.id === wordId)
     );
+    const dispatch = useDispatch();
 
     return (
         <ImageBackground source={bgImage} style={styles.screen}>
             <Block style={styles.block1}>
                 <View style={styles.wordBox}><Text style={styles.wordTitle}>{selectorWord.title}</Text></View>
-                <TouchableOpacity style={styles.star}>
+                <TouchableOpacity style={styles.star} onPress={() => {
+                    dispatch(FavActions.addToFav(selectorWord));
+                }}>
                     <FontAwesome name="star" size={30} color={Colors.primary} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.sound}>

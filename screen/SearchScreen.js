@@ -10,7 +10,7 @@ import {
     Keyboard, Contain,
     KeyboardAvoidingView
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -19,6 +19,8 @@ import Colors from '../constants/color';
 import Input from '../components/Input';
 import Buttons from '../components/Button';
 import WordItem from '../components/store/WordItem';
+import * as FavActions from '../store/actions/favorite';
+import * as HisActions from '../store/actions/history';
 
 import bgImage from '../assets/search.png';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -27,6 +29,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const SearchScreen = (props) => {
     const words = useSelector(state => state.words.availableWords);
+    const dispatch = useDispatch();
 
     return (
 
@@ -65,6 +68,12 @@ const SearchScreen = (props) => {
                                             wordId: itemData.item.id,
                                             wordTitle: itemData.item.title,
                                         });
+                                    }}
+                                    onAddFav={() => {
+                                        dispatch(FavActions.addToFav(itemData.item));
+                                    }}
+                                    onAddHis={() => {
+                                        dispatch(HisActions.addToHis(itemData.item));
                                     }}
                                 />
                             )}

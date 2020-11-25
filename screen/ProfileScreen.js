@@ -58,7 +58,9 @@ const ProfileScreen = (props) => {
                         <FontAwesome name="users" size={26} color='#56BC6D' />
                         <Text style={styles.option}>About Us</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.optionContainer}>
+                    <TouchableOpacity style={styles.optionContainer} onPress={() => {
+                        props.navigation.navigate('Myword');
+                    }}>
                         <MaterialIcons name="error" size={28} color='#4F78E3' />
                         <Text style={styles.option}>Version 1.0.0</Text>
                     </TouchableOpacity>
@@ -73,6 +75,12 @@ const ProfileScreen = (props) => {
             </View>
         </ImageBackground >
     );
+};
+
+ProfileScreen.navigationOptions = {
+    headerTransparent: true,
+    title: null,
+    headerBackTitleVisible: false,
 };
 
 const styles = StyleSheet.create({

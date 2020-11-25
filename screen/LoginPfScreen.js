@@ -173,6 +173,27 @@ const LoginPfScreen = (props) => {
 LoginPfScreen.navigationOptions = {
     headerTransparent: true,
     title: null,
+    headerTitleStyle: {
+        marginTop: -14,
+        color: 'white',
+        fontSize: 18,
+    },
+    headerBackTitleVisible: false,
+    headerBackImage: () =>
+        <TouchableOpacity
+            style={{
+                width: 400,
+                marginLeft: 6,
+                marginTop: -14,
+                backgroundColor: ''
+            }}
+        >
+            <MaterialIcons
+                name="navigate-before"
+                size={50}
+                color="white"
+            />
+        </TouchableOpacity>,
     headerRight: () => (
         <TouchableOpacity
             style={{ marginRight: 20, marginTop: -15, backgroundColor: '' }}
@@ -186,8 +207,6 @@ LoginPfScreen.navigationOptions = {
 const styles = StyleSheet.create({
     backgroundContainer: {
         flex: 1,
-        //height: null,
-        //width: null,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',

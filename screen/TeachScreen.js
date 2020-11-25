@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Dimensions,
     ImageBackground,
@@ -8,15 +8,20 @@ import {
     TouchableOpacity,
     Keyboard, KeyboardAvoidingView
 } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons'
+import { useSelector, useDispatch } from 'react-redux';
 
+import { MaterialIcons } from '@expo/vector-icons'
 import Input from '../components/Input';
 import Buttons from '../components/Button';
 import Colors from '../constants/color';
 import bgImage from '../assets/Teach.png';
 
 const TeachScreen = (props) => {
-    // console.log(props);
+    const [title, setTitle] = useState('');
+    const [definiion, setDefinition] = useState('');
+    
+    const wordId = props.navigation.getParam('wordId');
+
     return (
         <ImageBackground source={bgImage} style={styles.backgroundContainer}>
             <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss(); }}>
@@ -26,10 +31,16 @@ const TeachScreen = (props) => {
                     keyboardVerticalOffset={-70}
                     style={styles.screen}
                 >
+                    <Text style={styles.YText}> You </Text>
+                    <Text style={styles.TText}> TEACH </Text>
+                    <Text style={styles.IText}> I </Text>
+                    <Text style={styles.LText}> LEARN </Text>
                     <View style={styles.screen}>
                         <View style={styles.inputContainer}>
                             <Input
                                 style={styles.input}
+                                value={title}
+                                onChange={text => setTitle(text)}
                                 placeholder={'Type something...'}
                                 placeholderTextColor={Colors.primary}
                                 autoCorrect={false}
@@ -38,6 +49,8 @@ const TeachScreen = (props) => {
                             />
                             <Input
                                 style={styles.input2}
+                                value={definiion}
+                                onChange={text => setDefinition(text)}
                                 placeholder={'Meaning...'}
                                 placeholderTextColor={Colors.primary}
                                 autoCorrect={false}
@@ -104,8 +117,38 @@ const styles = StyleSheet.create({
         width: '100%',
         maxWidth: '100%',
     },
+    YText :{
+        color: "#ffffff",
+        fontSize: 34,
+        
+        fontFamily: "baloo-bhaina-bold",
+        marginTop: 100,
+        marginLeft: -180
+    },
+    TText :{
+        color: "#ffffff",
+        fontSize: 48,
+        
+        fontFamily: "baloo-bhaina-bold",
+        marginTop: -85,
+        marginLeft: 60
+    },
+    IText :{
+        color: "#ffffff",
+        fontSize: 34,
+        fontFamily: "baloo-bhaina-bold",
+        marginTop: 0,
+        marginLeft: -350
+    },
+    LText :{
+        color: "#ffffff",
+        fontSize: 48,
+        fontFamily: "baloo-bhaina-bold",
+        marginTop: -85,
+        marginLeft: -150
+    },
     inputContainer: {
-        marginTop: 400,
+        marginTop: 140,
         alignItems: 'flex-end',
     },
     input: {

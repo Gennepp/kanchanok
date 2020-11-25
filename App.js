@@ -5,16 +5,22 @@ import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+//import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
 
 import wordsReducer from './store/reducers/words';
+import favReducer from './store/reducers/favorite';
+import hisReducer from './store/reducers/history';
 
 import WordNavigator from './navigation/WordNavigator';
 
 const rootReducer = combineReducers({
-  words: wordsReducer
+  words: wordsReducer,
+  favorite: favReducer,
+  history: hisReducer,
 });
 
+//composeWithDevTools()
 const store = createStore(rootReducer);
 
 const fetchFonts = () => {
